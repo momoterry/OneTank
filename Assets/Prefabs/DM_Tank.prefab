@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5655972095024308075}
   - component: {fileID: 7382768152297577222}
+  - component: {fileID: 5833176573102285672}
   m_Layer: 0
   m_Name: Hint
   m_TagString: Untagged
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 72588395
   m_SortingLayer: 2
   m_SortingOrder: 45
-  m_Sprite: {fileID: 21300000, guid: 4cadc7cae519a4e40bf9defe4acdd04b, type: 3}
+  m_Sprite: {fileID: 865810332, guid: 7b04cb55f90ceb3449f944f4242c8184, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5833176573102285672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191306499706537078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c068845190a0bd0408567d85da11b586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 7382768152297577222}
+  InitAnim:
+    sprites: []
+    FPS: 4
+  Idle:
+    sprites:
+    - {fileID: 865810332, guid: 7b04cb55f90ceb3449f944f4242c8184, type: 3}
+    - {fileID: 225364498, guid: 7b04cb55f90ceb3449f944f4242c8184, type: 3}
+    FPS: 2
 --- !u!1 &8795086517185366204
 GameObject:
   m_ObjectHideFlags: 0

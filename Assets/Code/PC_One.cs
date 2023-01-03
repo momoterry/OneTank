@@ -606,6 +606,11 @@ public class PC_One : PlayerControllerBase
         }
     }
 
+    public void OnSetupFace( Vector3 faceTo)
+    {
+        myDollManager.transform.rotation = Quaternion.LookRotation(faceTo, Vector3.up);
+    }
+
     //=================== 互動物件相關 ===================
     public override void OnActionKey()
     {

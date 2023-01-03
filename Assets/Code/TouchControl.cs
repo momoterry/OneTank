@@ -6,9 +6,10 @@ using UnityEngine.EventSystems;
 public class TouchControl : MonoBehaviour
 {
 
-    protected PlayerControllerBase thePC = null;
+    protected PC_One thePC = null;
 
     protected bool isTouching = false;
+    protected Vector3 touchPos;
 
     // Start is called before the first frame update
     void Start()
@@ -24,18 +25,7 @@ public class TouchControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetMouseButtonDown(1))
-        //{
-        //    Vector3 mPos = Input.mousePosition;
-        //    Vector3 mWorldMousePos = Camera.main.ScreenToWorldPoint(mPos);
-        //    mWorldMousePos.z = 0.0f;
 
-        //    PlayerController thePC = BattleSystem.GetInstance().GetPlayerController();
-        //    if (thePC)
-        //    {
-        //        //thePC.OnAttackToward(mWorldMousePos);
-        //    }
-        //}
 
         if (isTouching)
         {
@@ -45,28 +35,15 @@ public class TouchControl : MonoBehaviour
             mWorldMousePos.y = 0.0f;
             if (thePC)
             {
-                thePC.OnMoveToPosition(mWorldMousePos);
+                Vector3 dir = mWorldMousePos - touchPos;
+                if (dir.magnitude > 0.1f)
+                {
+                    thePC.OnSetupFace(dir.normalized);
+                }
             }
         }
     }
 
-    //void OnMouseDown()
-    //{
-    //    if (EventSystem.current.IsPointerOverGameObject())
-    //    {
-    //        //ªí¥Ü«ö¨ì UI
-    //        return;
-    //    }
-
-    //    //print("Mouse Down !!");
-
-    //    thePC = BattleSystem.GetPC();
-    //    if (thePC)
-    //    {
-    //        //thePC.OnMoveToPosition(mWorldMousePos);
-    //        isTouching = true;
-    //    }
-    //}
 
     void OnBattleTouchDown(Vector3 point)
     {
@@ -75,6 +52,9 @@ public class TouchControl : MonoBehaviour
         if (thePC)
         {
             isTouching = true;
+            touchPos = point;
+            touchPos.y = 0.0f;
+            thePC.OnMoveToPosition(touchPos);
         }
     }
 

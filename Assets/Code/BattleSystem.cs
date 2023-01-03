@@ -71,8 +71,8 @@ public class BattleSystem : MonoBehaviour
 
     public GameObject GetPlayer() { return thePlayer; }
 
-    public PlayerControllerBase GetPlayerController() { return thePC; }
-    public static PlayerControllerBase GetPC() { return instance.thePC; }
+    public PC_One GetPlayerController() { return thePC; }
+    public static PC_One GetPC() { return instance.thePC; }
     public static Dialogue GetDialogue() { return instance.theBattleHUD.theDialogue; }
     public VPad GetVPad() {return theBattleHUD.theVPad; }
 

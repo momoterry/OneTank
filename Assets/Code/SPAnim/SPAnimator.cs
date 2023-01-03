@@ -173,7 +173,7 @@ public class SPAnimator : MonoBehaviour
         if (InitAnim.IsValid())
             target.sprite = InitAnim.sprites[0];
         else if (Idle.IsValid())
-            target.sprite = InitAnim.sprites[0];
+            target.sprite = Idle.sprites[0];
     }
 
     virtual protected void SetupFirstLoopSprite()
@@ -188,28 +188,6 @@ public class SPAnimator : MonoBehaviour
     void Update()
     {
         currPhase = nextPhase;
-
-        //if (currPhase == PHASE.FINISH || !currClip.IsValid())
-        //{
-        //    return;
-        //}
-
-        //currClip.Update();
-        //if (target)
-        //{
-        //    target.sprite = currClip.GetCurrSprite();
-        //}
-        //if (currClip.IsDone())
-        //{
-        //    switch (currPhase)
-        //    {
-        //        case PHASE.INIT:
-        //        //case PHASE.SPECIFIC:
-        //            currClip = Idle;
-        //            nextPhase = PHASE.LOOP;
-        //            break;
-        //    }
-        //}
 
         if (currPhase == PHASE.FINISH)
         {
@@ -260,26 +238,12 @@ public class SPAnimator : MonoBehaviour
         }
     }
 
-    //public bool PlaySpecific(string name)
-    //{
-    //    SPAnimationClip specificClip = specificMaps[name];
-    //    if (specificClip != null)
-    //    {
-    //        //specificClip.Init();
-    //        currClip = specificClip;
-    //        nextPhase = PHASE.SPECIFIC;
-            
-    //        return true;
-    //    }
-    //    return false;
-    //}
 
-    //public void StopSpecific()
+
+    //private void OnGUI()
     //{
-    //    //specificClip = null;
-    //    if (currPhase == PHASE.SPECIFIC)
-    //    {
-    //        nextPhase = PHASE.LOOP;
-    //    }
+    //    Vector2 thePoint = Camera.main.WorldToScreenPoint(transform.position + Vector3.forward);
+    //    thePoint.y = Camera.main.pixelHeight - thePoint.y;
+    //    GUI.TextArea(new Rect(thePoint, new Vector2(100.0f, 40.0f)), currPhase.ToString());
     //}
 }
