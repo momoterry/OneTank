@@ -95,7 +95,7 @@ public class DollAuto : Doll
             myHpHandler.enabled = true;
         if (myCollider)
             myCollider.enabled = true;
-        myMaster = BattleSystem.GetInstance().GetPlayer();
+        myMaster = BattleSystem.GetPC().GetDollManager().gameObject;
     }
 
     protected void EnterAutoState(AutoState state)

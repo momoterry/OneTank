@@ -118,12 +118,11 @@ public class TankOne : DollAuto
     //    Vector2 thePoint = Camera.main.WorldToScreenPoint(transform.position + Vector3.forward);
     //    thePoint.y = Camera.main.pixelHeight - thePoint.y;
     //    GUI.TextArea(new Rect(thePoint, new Vector2(100.0f, 40.0f)), currAutoState.ToString() + " " + hullAngle);
-
     //}
 
     //private void OnDrawGizmos()
     //{
     //    Gizmos.color = Color.red;
-    //    Gizmos.DrawLine(transform.position, transform.position + agentDir);
+    //    Gizmos.DrawLine(transform.position, transform.position);
     //}
 }
