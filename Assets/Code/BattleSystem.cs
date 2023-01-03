@@ -22,7 +22,7 @@ public class BattleSystem : MonoBehaviour
     protected List<GameObject> enemyList = new List<GameObject>();
     protected List<GameObject> objList = new List<GameObject>();
 
-    protected PlayerControllerBase thePC;
+    protected PC_One thePC;
 
     public int MaxLevel = 5;
     protected int currLevel = 1;
@@ -49,16 +49,13 @@ public class BattleSystem : MonoBehaviour
     protected BATTLE_GAME_STATE nextState = BATTLE_GAME_STATE.NONE;
     protected float stateTime = 0;
 
-    public int GetEnemyCount() { return enemyList.Count; }
+    //public int GetEnemyCount() { return enemyList.Count; }
 
     protected static BattleSystem instance = null;
     public static BattleSystem GetInstance() { return instance; }
 
     public BattleSystem() : base()
     {
-        //if (instance != null)
-        //    print("ERROR !! 超過一份 BattleSystem 存在: ");
-        //instance = this;
     }
 
     protected void Awake()
@@ -85,38 +82,35 @@ public class BattleSystem : MonoBehaviour
 
     public bool IsDuringBattle() { return currState == BATTLE_GAME_STATE.BATTLE; }
 
-    public void AddEnemy( GameObject enemyObj)
-    {
-        enemyList.Add(enemyObj);
-    }
+    //public void AddEnemy( GameObject enemyObj)
+    //{
+    //    enemyList.Add(enemyObj);
+    //}
 
-    public void OnEnemyKilled( GameObject enemyObj)
-    {
-        //TODO: 是否把 enemyList 改成 Enemy 而不是 GameObject ?
+    //public void OnEnemyKilled( GameObject enemyObj)
+    //{
+    //    //TODO: 是否把 enemyList 改成 Enemy 而不是 GameObject ?
 
-       if ( enemyList.Remove(enemyObj))
-       {
-            Enemy e = enemyObj.GetComponent<Enemy>();
-            if (e)
-            {
-                thePC.OnKillEnemy(e);
-            }
+    //   if ( enemyList.Remove(enemyObj))
+    //   {
+    //        Enemy e = enemyObj.GetComponent<Enemy>();
+    //        if (e)
+    //        {
+    //            thePC.OnKillEnemy(e);
+    //        }
 
-            if (GetEnemyCount()==0)
-            {
-                OnEnemyClear();
-            }      
-        }
-        else
-        {
-            print("ERROR !! 不應該的重復擊殺!!: " + enemyObj);
-        }
-    }
+    //        if (GetEnemyCount()==0)
+    //        {
+    //            OnEnemyClear();
+    //        }      
+    //    }
+    //    else
+    //    {
+    //        print("ERROR !! 不應該的重復擊殺!!: " + enemyObj);
+    //    }
+    //}
 
-    public void OnBSObjectDestroy(GameObject obj)
-    {
-        objList.Remove(obj);
-    }
+
 
     public GameObject SpawnGameplayObject(GameObject objRef, Vector3 pos, bool clearByBS = true)
     {
@@ -132,11 +126,6 @@ public class BattleSystem : MonoBehaviour
         if (o && clearByBS)
         {
             objList.Add(o);
-            //if (clearByBS)
-            //{
-            //    o.AddComponent<BSObjectTag>();
-            //}
-            o.AddComponent<BSObjectTag>();
         }
         return o;
     }
@@ -144,13 +133,6 @@ public class BattleSystem : MonoBehaviour
     public static GameObject SpawnGameObj(GameObject objRef, Vector3 pos, bool clearByBS = false)
     {
         return instance.SpawnGameplayObject(objRef, pos, clearByBS);
-    }
-
-    //TODO: 可以拿掉了
-    protected void OnEnemyClear()
-    {
-        //if (clearGate)
-        //    clearGate.SetActive(true);
     }
 
 
@@ -231,11 +213,7 @@ public class BattleSystem : MonoBehaviour
 
     protected virtual void UpdateBattleHUD()
     {
-        //if (thePC)
-        //{
-        //    theBattleHUD.SetPlayerInfo(thePC.GetHP(), thePC.GetHPMax(), thePC.GetMP(), thePC.GetMPMax(), thePC.GetATTACK());
-        //    theBattleHUD.SetPotionNum(currPotion, maxPotion);
-        //}
+
     }
 
     protected virtual void UpdateInput()
@@ -293,20 +271,12 @@ public class BattleSystem : MonoBehaviour
 
     protected virtual void ClearLevel()
     {
-        foreach (GameObject enemyObj in enemyList)
-        {
-            Destroy(enemyObj);
-            //print("Kill One !!");
-        }
-        enemyList.Clear();
 
         foreach (GameObject o in objList)
         {
             Destroy(o);
         }
         objList.Clear();
-
-        //DropItem.ClearAllDropItem();
     }
 
     protected virtual void StopGameplayByFail()
@@ -350,7 +320,7 @@ public class BattleSystem : MonoBehaviour
 
                 thePlayer = Instantiate(playerRef, initPlayerPos.position, rm, null);
 
-                thePC = thePlayer.GetComponent<PlayerControllerBase>();
+                thePC = thePlayer.GetComponent<PC_One>();
                 thePC.initFaceDirAngle = initPlayerDirAngle;
                 thePC.SetupFaceDirByAngle(initPlayerDirAngle);  //確保 First Frame 轉向正確
                 //thePC.InitStatus(); 會在 PC 的 Start 被呼叫
@@ -386,51 +356,6 @@ public class BattleSystem : MonoBehaviour
         nextState = BATTLE_GAME_STATE.FAIL;
     }
 
-    public void OnUsePotion()
-    {
-        if (currPotion > 0)
-        {
-            //在這裡叫角色補上
-            if (thePC)
-            {
-                float heal = thePC.GetHPMax() * potionHealRatio;
-                thePC.DoHeal(heal);
-            }
-            currPotion--;
-        }
-    }
-
-
-    //public bool OnDropItemPickUp(DropItem item)
-    //{
-    //    DropItem.DROPITEM_TYPE itemType = item.GetItemType();
-    //    bool result = false;
-    //    switch (itemType)
-    //    {
-    //        case DropItem.DROPITEM_TYPE.HEAL_POTION:
-    //            if (currPotion < maxPotion)
-    //            {
-    //                currPotion++;
-    //                result = true;
-    //            }
-    //            break;
-
-    //        //2022/9/22 補充
-    //        //現在已經不再使用這類的直接升物件 Pick Up 可以先保留作為
-    //        //關卡中暫時變強的物件使用 (變強只限於同關卡，在換關後消失)
-
-    //        case DropItem.DROPITEM_TYPE.POWERUP_MAXHP:
-    //            //print("血量升級 !!");
-    //            result = thePC.DoHpUp();
-    //            break;
-    //        case DropItem.DROPITEM_TYPE.POWERUP_ATTACK:
-    //            //print("攻擊升級 !!");
-    //            result = thePC.DoAtkUp();
-    //            break;
-    //    }
-
-    //    return result;
-    //}
 
 
     public void OnAddLevelDifficulty(int addLevel = 1)

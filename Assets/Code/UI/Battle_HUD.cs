@@ -234,8 +234,8 @@ public class Battle_HUD : MonoBehaviour
             PotionMaxText.gameObject.SetActive(num == maxNum);
     }
 
-    public void OnButtonPotion()
-    {
-        BattleSystem.GetInstance().OnUsePotion();
-    }
+    //public void OnButtonPotion()
+    //{
+    //    BattleSystem.GetInstance().OnUsePotion();
+    //}
 }

@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour
 
         myHPHandler = GetComponent<Hp_BarHandler>();
 
-        BattleSystem.GetInstance().AddEnemy(gameObject);
+        //BattleSystem.GetInstance().AddEnemy(gameObject);
 
         nextState = AI_STATE.SPAWN_WAIT;
 
@@ -382,7 +382,7 @@ public class Enemy : MonoBehaviour
 
     protected void DoDeath()
     {
-        BattleSystem.GetInstance().OnEnemyKilled(gameObject);
+        //BattleSystem.GetInstance().OnEnemyKilled(gameObject);
         //DropManager.GetInstance().OnTryDropByEnemyKilled(this);
         
 #if XZ_PLAN
