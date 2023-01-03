@@ -18,32 +18,27 @@ public class TankOne : DollAuto
     protected Vector3 turretDir = Vector3.forward;
     protected float turretAngle = 0;
 
-    protected void UpdateTankMoave()
+    protected void UpdateTankMove()
     {
-        //transform.position = Vector3.MoveTowards(transform.position, mySlot.position, RunSpeed * Time.deltaTime);
+        //myAgent.SetDestination(mySlot.position);
+        //Vector3 toDir = myAgent.desiredVelocity;
 
         Vector3 toDir = mySlot.position - transform.position;
         toDir.y = 0;
         toDir.Normalize();
-        //float toAngle = Vector3.SignedAngle(hullBaceDir, toDir, Vector3.down);
 
-        //float diffAngle = toAngle - hullAngle;
-        //if (diffAngle > 180.0f)
-        //    diffAngle -= 360.0f;
-        //else if (diffAngle < -180.0f)
-        //    diffAngle += 360.0f;
-
-        //if (Mathf.Abs(diffAngle) < 1.0f)
-        //{
-        //    transform.position = Vector3.MoveTowards(transform.position, mySlot.position, RunSpeed * Time.deltaTime);
-        //}
 
         float diffAngle = Vector3.Angle(hullDir, toDir);
         if (diffAngle < 3.0f)
         {
             //對準了才移動
             transform.position = Vector3.MoveTowards(transform.position, mySlot.position, RunSpeed * Time.deltaTime);
+            //myAgent.speed = RunSpeed;
         } 
+        //else
+        //{
+        //    myAgent.speed = 0;
+        //}
 
         hullDir = Vector3.RotateTowards(hullDir, toDir, Time.deltaTime * hullRotateSpeed * Mathf.Deg2Rad, 0);
         hullAngle = Vector3.SignedAngle(hullBaceDir, hullDir, Vector3.down);
@@ -54,7 +49,7 @@ public class TankOne : DollAuto
     {
         myFace = BattleSystem.GetPC().GetFaceDir();
         //transform.position = Vector3.MoveTowards(transform.position, mySlot.position, RunSpeed * Time.deltaTime);
-        UpdateTankMoave();
+        UpdateTankMove();
 
         if (autoStateTime > 0.1f)
         {
@@ -95,7 +90,7 @@ public class TankOne : DollAuto
     override protected void UpdateGoBack()
     {
         myFace = (mySlot.position - transform.position).normalized;
-        UpdateTankMoave();
+        UpdateTankMove();
 
         float dis = (mySlot.position - transform.position).magnitude;
 
