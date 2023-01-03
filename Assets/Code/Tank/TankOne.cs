@@ -45,11 +45,22 @@ public class TankOne : DollAuto
         hull.transform.localRotation = Quaternion.Euler(0, 0, hullAngle);
     }
 
+    protected void UpdateHullToFront()
+    {
+        Vector3 front = myMaster.transform.forward;
+        front.y = 0;
+
+        hullDir = Vector3.RotateTowards(hullDir, front, Time.deltaTime * hullRotateSpeed * Mathf.Deg2Rad, 0);
+        hullAngle = Vector3.SignedAngle(hullBaceDir, hullDir, Vector3.down);
+        hull.transform.localRotation = Quaternion.Euler(0, 0, hullAngle);
+    }
+
     protected override void UpdateFollow()
     {
-        myFace = BattleSystem.GetPC().GetFaceDir();
+        //myFace = BattleSystem.GetPC().GetFaceDir();
         //transform.position = Vector3.MoveTowards(transform.position, mySlot.position, RunSpeed * Time.deltaTime);
-        UpdateTankMove();
+        //UpdateTankMove();
+        UpdateHullToFront();
 
         if (autoStateTime > 0.1f)
         {
@@ -62,6 +73,8 @@ public class TankOne : DollAuto
                 nextAutoState = AutoState.ATTACK;
             }
         }
+
+        CheckIfRunBack();   //隨時檢查，以立刻移動
     }
 
     protected override void UpdateAttack()
@@ -85,11 +98,13 @@ public class TankOne : DollAuto
         }
         if (!waitRotate)
             base.UpdateAttack();
+
+        UpdateHullToFront();
     }
 
     override protected void UpdateGoBack()
     {
-        myFace = (mySlot.position - transform.position).normalized;
+        //myFace = (mySlot.position - transform.position).normalized;
         UpdateTankMove();
 
         float dis = (mySlot.position - transform.position).magnitude;

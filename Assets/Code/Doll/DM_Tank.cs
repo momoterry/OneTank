@@ -10,6 +10,8 @@ public class DM_Tank : DollManager
     public float slotWidth = 1.5f;
     public float slotDepth = 1.5f;
 
+    public GameObject hintRef;
+
     protected float allShift = 0.0f;
 
     protected List<Doll> frontList = new List<Doll>();
@@ -26,9 +28,13 @@ public class DM_Tank : DollManager
         for (int i = 0; i < slotNum; i++)
         {
             GameObject o = new GameObject("DynaSlot_" + i);
+            //GameObject o = Instantiate(hintRef, transform.position, transform.rotation, transform);
+            GameObject ho = BattleSystem.SpawnGameObj(hintRef, transform.position);
+            ho.transform.parent = o.transform;
             o.transform.position = transform.position;
             o.transform.parent = transform;
             DollSlots[i] = o.transform;
+            o.SetActive(false); 
         }
         dolls = new Doll[slotNum];
     }
@@ -125,6 +131,7 @@ public class DM_Tank : DollManager
         if (result)
         {
             //RebuilFormation();
+            result.gameObject.SetActive(true);
             needRebuild = true;
         }
 
@@ -139,6 +146,7 @@ public class DM_Tank : DollManager
     public override void OnDollRevive(Doll doll)
     {
         needRebuild = true;
+        doll.GetSlot().gameObject.SetActive(true);
     }
 
     public override void OnDollDestroy(Doll doll)
@@ -154,6 +162,7 @@ public class DM_Tank : DollManager
             case DOLL_POSITION_TYPE.MIDDLE:
             case DOLL_POSITION_TYPE.BACK:
                 frontList.Remove(doll);
+                doll.GetSlot().gameObject.SetActive(false);
                 RebuildFrontSlots();
                 break;
             //case DOLL_POSITION_TYPE.MIDDLE:

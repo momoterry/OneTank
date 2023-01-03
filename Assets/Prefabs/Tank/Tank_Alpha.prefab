@@ -59,8 +59,8 @@ MonoBehaviour:
   AttackInit: 30
   SearchRange: 8
   canRevie: 1
-  PositionRangeIn: 1
-  PositionRangeOut: 2
+  PositionRangeIn: 0.25
+  PositionRangeOut: 1
   AttackRangeIn: 10
   AttackRangeOut: 12
   attackWait: 0.2
