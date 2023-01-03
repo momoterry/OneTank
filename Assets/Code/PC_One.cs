@@ -13,7 +13,7 @@ public class PC_One : PlayerControllerBase
     protected const string SKILL_FOUR = "SkillFour";
     protected string[] skillSaveNames = { SKILL_ONE, SKILL_TWO, SKILL_THREE, SKILL_FOUR };
 
-    public Animator myAnimator;
+    //public Animator myAnimator;
     public SPAnimator mySPAnimator;
 
     public SkillBase autoSkillRef;
@@ -63,12 +63,12 @@ public class PC_One : PlayerControllerBase
     protected Damage myDamage;
 
     //升級相關
-    protected float HP_Up_Ratio = 0.6f;
-    protected float ATK_Up_Ratio = 0.6f;
-    protected int HP_UP_Max = 99;
-    protected int ATK_UP_MAX = 99;
-    protected int HP_Up = 0;
-    protected int ATK_Up = 0;
+    //protected float HP_Up_Ratio = 0.6f;
+    //protected float ATK_Up_Ratio = 0.6f;
+    //protected int HP_UP_Max = 99;
+    //protected int ATK_UP_MAX = 99;
+    //protected int HP_Up = 0;
+    //protected int ATK_Up = 0;
 
     protected Hp_BarHandler myHPHandler;
 
@@ -105,14 +105,13 @@ public class PC_One : PlayerControllerBase
             myAgent.updateUpAxis = false;
         }
 
-        if (!myAnimator)
-            myAnimator = GetComponent<Animator>();
+        //if (!myAnimator)
+        //    myAnimator = GetComponent<Animator>();
 
         SetupFaceDirByAngle(initFaceDirAngle);
 
         InitStatus();
 
-        //TODO: 應該交給 Battle System
         //Input System Bind
         theInput.TheHero.Attack.performed += ctx => OnAttack();
         theInput.TheHero.Shoot.performed += ctx => OnShoot();
@@ -274,8 +273,8 @@ public class PC_One : PlayerControllerBase
         HP_Max = HP_MaxInit;
         MP_Max = MP_MaxInit;
         Attack = Attack_Init;
-        HP_Up = 0;
-        ATK_Up = 0;
+        //HP_Up = 0;
+        //ATK_Up = 0;
 
         hp = HP_Max;
         mp = MP_Max;
@@ -311,28 +310,28 @@ public class PC_One : PlayerControllerBase
         }
     }
 
-    public override bool DoHpUp()
-    {
-        if (HP_Up == HP_UP_Max)
-            return false;
+    //public override bool DoHpUp()
+    //{
+    //    if (HP_Up == HP_UP_Max)
+    //        return false;
 
-        float oldValue = HP_Max;
-        HP_Up++;
-        HP_Max = HP_MaxInit * (1.0f + HP_Up_Ratio * (float)HP_Up);
-        hp *= HP_Max / oldValue; //現有 hp 等比例增加
+    //    float oldValue = HP_Max;
+    //    HP_Up++;
+    //    HP_Max = HP_MaxInit * (1.0f + HP_Up_Ratio * (float)HP_Up);
+    //    hp *= HP_Max / oldValue; //現有 hp 等比例增加
 
-        return true;
-    }
+    //    return true;
+    //}
 
-    public override bool DoAtkUp()
-    {
-        if (ATK_Up == ATK_UP_MAX)
-            return false;
+    //public override bool DoAtkUp()
+    //{
+    //    if (ATK_Up == ATK_UP_MAX)
+    //        return false;
 
-        ATK_Up++;
-        Attack = Attack_Init * (1.0f + ATK_Up_Ratio * (float)ATK_Up);
-        return true;
-    }
+    //    ATK_Up++;
+    //    Attack = Attack_Init * (1.0f + ATK_Up_Ratio * (float)ATK_Up);
+    //    return true;
+    //}
 
     public override bool IsKilled()
     {
@@ -354,12 +353,12 @@ public class PC_One : PlayerControllerBase
             OnUpdateState();
         }
 
-        if (myDollManager && currState != PC_STATE.NONE && currState != PC_STATE.DEAD)
-        {
-            UpdateStatus();
-            myDollManager.SetMasterPosition(transform.position);
-            myDollManager.SetMasterDirection(faceDir, faceFrontType);
-        }
+        //if (myDollManager && currState != PC_STATE.NONE && currState != PC_STATE.DEAD)
+        //{
+        //    UpdateStatus();
+        //    myDollManager.SetMasterPosition(transform.position);
+        //    myDollManager.SetMasterDirection(faceDir, faceFrontType);
+        //}
 
         if (myHPHandler && currState != PC_STATE.NONE)
         {
@@ -465,10 +464,13 @@ public class PC_One : PlayerControllerBase
         }
     }
 
-    protected virtual void UpdateMoveControl()
+    protected void UpdateMoveControl()
     {
-        //TODO: 把輸入交給別的系統
 
+    }
+
+    protected void UpdateMoveControl_Old()
+    {
         //float minMove = 0.5f;
         Vector3 moveVec = Vector3.zero;
         bool bMove = false;
@@ -486,10 +488,7 @@ public class PC_One : PlayerControllerBase
                 moveVec = targetVec.normalized;
                 //print("Move !! " + moveVec);
             }
-            //else
-            //{
-            //    print("Too Small...........");
-            //}
+
             isMovingByTouchControl = false;
         }
 
@@ -503,14 +502,8 @@ public class PC_One : PlayerControllerBase
         if (vPadVec.magnitude > 0.2f)
         {
             bMove = true;
-#if XZ_PLAN
             moveVec = new Vector3(vPadVec.x, 0, vPadVec.y);   //XZ Plan
             moveVec.Normalize();
-#else
-            moveVec = vPadVec;   //XY Plan
-            moveVec.Normalize();
-            moveVec.z = moveVec.y * 0.01f;
-#endif
         }
 
 
@@ -518,31 +511,19 @@ public class PC_One : PlayerControllerBase
         if (inputVec.magnitude > 0.5f)
         {
             bMove = true;
-#if XZ_PLAN
             moveVec = new Vector3(inputVec.x, 0, inputVec.y);   //XZ Plan
             moveVec.Normalize();
-#else
-            moveVec = inputVec;   //XY Plan
-            moveVec.Normalize();
-            moveVec.z = moveVec.y * 0.01f;
-#endif
+
         }
 
 
         if (bMove)
         {
-            //TODO: 不要每 Frame 進行
-            //OnMoveToPosition(transform.position + moveVec);
             transform.position = transform.position + moveVec * WalkSpeed * Time.deltaTime;
 
             faceDir = moveVec;
 
-#if XZ_PLAN
             faceDir.y = 0;      //XZ Plan
-#else
-            faceDir.z = 0;      //XY Plan
-
-#endif
 
             SetupFrontDirection();
 
@@ -559,20 +540,19 @@ public class PC_One : PlayerControllerBase
             }
         }
 
-        bool isRun = (myAgent.velocity.magnitude > 0.1f) || bMove;
-        if (myAnimator)
-        {
-            myAnimator.SetBool("Run", isRun);
-        }
-        if (mySPAnimator)
-        {
-            mySPAnimator.SetIsRun(isRun);
-        }
+        //bool isRun = (myAgent.velocity.magnitude > 0.1f) || bMove;
+        //if (myAnimator)
+        //{
+        //    myAnimator.SetBool("Run", isRun);
+        //}
+        //if (mySPAnimator)
+        //{
+        //    mySPAnimator.SetIsRun(isRun);
+        //}
     }
 
     private void SetupFrontDirection()
     {
-#if XZ_PLAN
         if (faceDir.z > faceDir.x)
         {
             if (faceDir.z > -faceDir.x)
@@ -599,50 +579,16 @@ public class PC_One : PlayerControllerBase
                 faceFrontType = FaceFrontType.DOWN;
             }
         }
-        if (myAnimator)
-        {
-            myAnimator.SetFloat("X", faceDir.x);
-            myAnimator.SetFloat("Y", faceDir.z);
-        }
+        //if (myAnimator)
+        //{
+        //    myAnimator.SetFloat("X", faceDir.x);
+        //    myAnimator.SetFloat("Y", faceDir.z);
+        //}
         if (mySPAnimator)
         {
             mySPAnimator.SetXY(faceDir.x, faceDir.z);
         }
 
-#else
-        if (faceDir.y > faceDir.x)
-        {
-            if ( faceDir.y > -faceDir.x)
-            {
-                faceFront = Vector3.up;
-                faceFrontType = FaceFrontType.UP;
-            }
-            else
-            {
-                faceFront = Vector3.left;
-                faceFrontType = FaceFrontType.LEFT;
-            }
-        }
-        else
-        {
-            if (faceDir.y > -faceDir.x)
-            {
-                faceFront = Vector3.right;
-                faceFrontType = FaceFrontType.RIGHT;
-            }
-            else
-            {
-                faceFront = Vector3.down;
-                faceFrontType = FaceFrontType.DOWN;
-            }
-        }
-
-        if (myAnimator)
-        {
-            myAnimator.SetFloat("X", faceDir.x);
-            myAnimator.SetFloat("Y", faceDir.z);
-        }
-#endif
 
     }
 
@@ -651,12 +597,12 @@ public class PC_One : PlayerControllerBase
 
     public override void OnMoveToPosition(Vector3 target)
     {
-        //print("OnMoveToPosition!! " + currState);
         if (inputActive && (currState == PC_STATE.NORMAL || currState == PC_STATE.ATTACK_AUTO))
         {
-            //myAgent.SetDestination(target);
-            isMovingByTouchControl = true;
-            moveTargetPos = target;
+            //isMovingByTouchControl = true;
+            //moveTargetPos = target;
+
+            myDollManager.transform.position = target;
         }
     }
 
@@ -863,8 +809,8 @@ public class PC_One : PlayerControllerBase
         if (stop && currState != PC_STATE.DEAD && currState != PC_STATE.NONE)
         {
             nextState = PC_STATE.STOP;
-            if (myAnimator)
-                myAnimator.SetBool("Run", false);
+            //if (myAnimator)
+            //    myAnimator.SetBool("Run", false);
             if (mySPAnimator)
             {
                 mySPAnimator.SetIsRun(false);

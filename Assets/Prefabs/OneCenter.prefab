@@ -190,8 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initFaceDirAngle: 180
   theCharData: {fileID: 893138017444081030}
-  DollManagerRef: {fileID: 8795086517185366204, guid: ef8008b54c142ac4cb395f9e67bcfe1d, type: 3}
-  myAnimator: {fileID: 0}
+  DollManagerRef: {fileID: 8795086517185366204, guid: 353c69eb741e08a438594c523fb862b2, type: 3}
   mySPAnimator: {fileID: 0}
   autoSkillRef: {fileID: 0}
   activeSkillRefs:

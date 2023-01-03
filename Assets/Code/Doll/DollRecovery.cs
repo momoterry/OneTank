@@ -111,33 +111,6 @@ public class DollRecovery : MonoBehaviour
         {
             GameSystem.GetPlayerData().AddUsingDoll("TankAlpha");
             GameSystem.GetPlayerData().AddUsingDoll("TankAlpha");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollBlackStone");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollBlackStone");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollOne");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollOne");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollOne");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollOne");
-
-            //GameSystem.GetPlayerData().AddUsingDoll("DollAce");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollAce");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollAce");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollAce");
-
-
-
-            GameSystem.GetPlayerData().AddUsingDoll("DollWhiteFire");
-            GameSystem.GetPlayerData().AddUsingDoll("DollWhiteFire");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollWhiteFire");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollWhiteFire");
-
-
-            //GameSystem.GetPlayerData().AddUsingDoll("DollFire");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollFire");
-            GameSystem.GetPlayerData().AddUsingDoll("DollLeaf");
-            GameSystem.GetPlayerData().AddUsingDoll("DollLeaf");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollLeaf");
-            //GameSystem.GetPlayerData().AddUsingDoll("DollLeaf");
-
         }
         //*/
 
