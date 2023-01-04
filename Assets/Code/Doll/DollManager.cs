@@ -26,10 +26,11 @@ public class DollManager : MonoBehaviour
         return theList;
     }
 
-    //public Transform GetEmptySlot(DOLL_POSITION_TYPE positionType = DOLL_POSITION_TYPE.FRONT)
-    //{
-    //    return AddOneDoll(null, positionType);
-    //}
+    public virtual void OnStartHint() { }
+    public virtual void OnFinishHint() { }
+    public virtual void OnUpdateHint( Vector3 faceDir ) { }
+
+
 
     public virtual bool HasEmpltySlot(DOLL_POSITION_TYPE positionType = DOLL_POSITION_TYPE.FRONT)
     {

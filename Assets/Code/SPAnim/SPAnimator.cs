@@ -113,6 +113,12 @@ public class SPAnimator : MonoBehaviour
     protected float Y = -1.0f;
     protected bool isRun = false;
 
+    virtual public void Restart()
+    {
+        Init();
+        SetupInitSprite();
+    }
+
     virtual public void SetXY(float x, float y) 
     { 
         X = x; 
@@ -127,11 +133,6 @@ public class SPAnimator : MonoBehaviour
 
     private void Awake()
     {
-        //for (int i=0; i<specificAnimations.Length; i++)
-        //{
-        //    specificMaps.Add(specificAnimations[i].name, specificAnimations[i].anim);
-        //}
-
         Init();
         SetupInitSprite();
     }

@@ -310,28 +310,6 @@ public class PC_One : PlayerControllerBase
         }
     }
 
-    //public override bool DoHpUp()
-    //{
-    //    if (HP_Up == HP_UP_Max)
-    //        return false;
-
-    //    float oldValue = HP_Max;
-    //    HP_Up++;
-    //    HP_Max = HP_MaxInit * (1.0f + HP_Up_Ratio * (float)HP_Up);
-    //    hp *= HP_Max / oldValue; //現有 hp 等比例增加
-
-    //    return true;
-    //}
-
-    //public override bool DoAtkUp()
-    //{
-    //    if (ATK_Up == ATK_UP_MAX)
-    //        return false;
-
-    //    ATK_Up++;
-    //    Attack = Attack_Init * (1.0f + ATK_Up_Ratio * (float)ATK_Up);
-    //    return true;
-    //}
 
     public override bool IsKilled()
     {
@@ -352,13 +330,6 @@ public class PC_One : PlayerControllerBase
         {
             OnUpdateState();
         }
-
-        //if (myDollManager && currState != PC_STATE.NONE && currState != PC_STATE.DEAD)
-        //{
-        //    UpdateStatus();
-        //    myDollManager.SetMasterPosition(transform.position);
-        //    myDollManager.SetMasterDirection(faceDir, faceFrontType);
-        //}
 
         if (myHPHandler && currState != PC_STATE.NONE)
         {
@@ -599,16 +570,20 @@ public class PC_One : PlayerControllerBase
     {
         if (inputActive && (currState == PC_STATE.NORMAL || currState == PC_STATE.ATTACK_AUTO))
         {
-            //isMovingByTouchControl = true;
-            //moveTargetPos = target;
-
             myDollManager.transform.position = target;
+            myDollManager.OnStartHint();
         }
     }
 
     public void OnSetupFace( Vector3 faceTo)
     {
         myDollManager.transform.rotation = Quaternion.LookRotation(faceTo, Vector3.up);
+        myDollManager.OnUpdateHint(faceTo);
+    }
+
+    public void OnMoveToPositionEnd()
+    {
+        myDollManager.OnFinishHint();
     }
 
     //=================== 互動物件相關 ===================

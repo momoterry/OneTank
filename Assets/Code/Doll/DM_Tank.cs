@@ -15,9 +15,6 @@ public class DM_Tank : DollManager
     protected float allShift = 0.0f;
 
     protected List<Doll> frontList = new List<Doll>();
-    //protected List<Doll> middleList = new List<Doll>();
-    //protected List<Doll> backList = new List<Doll>();
-
     protected bool needRebuild = false;
 
     // Start is called before the first frame update
@@ -49,6 +46,27 @@ public class DM_Tank : DollManager
             needRebuild = false;
         }
     }
+
+    public override void OnStartHint() 
+    { 
+        foreach (Doll d in frontList)
+        {
+            GameObject ho = d.GetSlot().gameObject;
+            ho.SetActive(true);
+            SPAnimator sa = ho.GetComponentInChildren<SPAnimator>();
+            sa.Restart();
+        }
+    }
+    public override void OnFinishHint()
+    {
+        foreach (Doll d in frontList)
+        {
+            GameObject ho = d.GetSlot().gameObject;
+            ho.SetActive(false);
+        }
+    }
+
+    public override void OnUpdateHint(Vector3 faceDir) { }
 
     protected void RebuildFrontSlots()
     {
@@ -131,7 +149,7 @@ public class DM_Tank : DollManager
         if (result)
         {
             //RebuilFormation();
-            result.gameObject.SetActive(true);
+            //result.gameObject.SetActive(true);
             needRebuild = true;
         }
 

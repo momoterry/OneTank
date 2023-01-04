@@ -61,6 +61,11 @@ public class TouchControl : MonoBehaviour
     void OnBattleTouchUp()
     {
         isTouching = false;
+        thePC = BattleSystem.GetPC();
+        if (thePC)
+        {
+            thePC.OnMoveToPositionEnd();
+        }
     }
 
     //private void OnMouseUp()
