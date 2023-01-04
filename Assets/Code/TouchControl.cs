@@ -10,6 +10,7 @@ public class TouchControl : MonoBehaviour
 
     protected bool isTouching = false;
     protected Vector3 touchPos;
+    protected Vector3 touchMousePos;
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +28,14 @@ public class TouchControl : MonoBehaviour
     {
         if (isTouching)
         {
-            //print("isTouching !! " + thePC);
             Vector3 mPos = Input.mousePosition;
-            Vector3 mWorldMousePos = Camera.main.ScreenToWorldPoint(mPos);
-            mWorldMousePos.y = 0.0f;
+            //Vector3 mWorldMousePos = Camera.main.ScreenToWorldPoint(mPos);
+            //mWorldMousePos.y = 0.0f;
             if (thePC)
             {
-                Vector3 dir = mWorldMousePos - touchPos;
+                //Vector3 dir = mWorldMousePos - touchPos;
+                Vector3 dir = mPos - touchMousePos;
+                dir = new Vector3(dir.x, 0, dir.y);
                 if (dir.magnitude > 0.25f)
                 {
                     thePC.OnSetupFace(dir.normalized);
@@ -51,6 +53,7 @@ public class TouchControl : MonoBehaviour
         {
             isTouching = true;
             touchPos = point;
+            touchMousePos = Input.mousePosition;
             touchPos.y = 0.0f;
             thePC.OnMoveToPosition(touchPos);
         }
