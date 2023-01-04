@@ -19,7 +19,7 @@ public class DollRecovery : MonoBehaviour
     protected string[] allDollIDs = null;
 
     protected float waitTime = 0.1f;
-    protected float stepTime = 0.15f;
+    protected float stepTime = 0.0f;
     protected int currSpawn = 0;
     protected float timeLeft = 0;
 
@@ -84,7 +84,8 @@ public class DollRecovery : MonoBehaviour
                 break;
         }
 
-        Vector3 pos = transform.position + front;
+        //TODO: 直接在 Slot 上生成位置
+        Vector3 pos = transform.position;// + front;
 
         GameObject dollObj = BattleSystem.GetInstance().SpawnGameplayObject(dollRef, pos, false);
         if (SpawnFX)
@@ -109,6 +110,7 @@ public class DollRecovery : MonoBehaviour
         //*Debug
         if (GameSystem.GetPlayerData().GetCurrDollNum() == 0)
         {
+            GameSystem.GetPlayerData().AddUsingDoll("TankAlpha");
             GameSystem.GetPlayerData().AddUsingDoll("TankAlpha");
             GameSystem.GetPlayerData().AddUsingDoll("TankAlpha");
         }

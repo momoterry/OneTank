@@ -437,7 +437,8 @@ public class PC_One : PlayerControllerBase
 
     protected void UpdateMoveControl()
     {
-
+        Vector3 targetPos = myDollManager.GetAllUnitCenter();
+        transform.position = targetPos;
     }
 
     protected void UpdateMoveControl_Old()

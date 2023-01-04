@@ -68,6 +68,21 @@ public class DM_Tank : DollManager
 
     public override void OnUpdateHint(Vector3 faceDir) { }
 
+    public override Vector3 GetAllUnitCenter()
+    {
+        if (frontList.Count > 0)
+        {
+            Vector3 all = Vector3.zero;
+            foreach( Doll d in frontList)
+            {
+                all += d.transform.position;
+            }
+            Vector3 pos = all / frontList.Count;
+            return pos;
+        }
+        return transform.position;
+    }
+
     protected void RebuildFrontSlots()
     {
         int frontNum = frontList.Count;

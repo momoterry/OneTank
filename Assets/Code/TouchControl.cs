@@ -25,8 +25,6 @@ public class TouchControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         if (isTouching)
         {
             //print("isTouching !! " + thePC);
@@ -36,7 +34,7 @@ public class TouchControl : MonoBehaviour
             if (thePC)
             {
                 Vector3 dir = mWorldMousePos - touchPos;
-                if (dir.magnitude > 0.1f)
+                if (dir.magnitude > 0.25f)
                 {
                     thePC.OnSetupFace(dir.normalized);
                 }

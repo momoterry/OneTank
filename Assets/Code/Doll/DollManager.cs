@@ -30,6 +30,10 @@ public class DollManager : MonoBehaviour
     public virtual void OnFinishHint() { }
     public virtual void OnUpdateHint( Vector3 faceDir ) { }
 
+    public virtual Vector3 GetAllUnitCenter()
+    {
+        return transform.position;
+    }
 
 
     public virtual bool HasEmpltySlot(DOLL_POSITION_TYPE positionType = DOLL_POSITION_TYPE.FRONT)
