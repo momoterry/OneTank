@@ -245,7 +245,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void UpdateChase()
     {
-        if (!myAgent || !targetObj)
+        if (!targetObj || !targetObj.activeInHierarchy)
         {
             nextState = AI_STATE.IDLE;
             return;
@@ -274,7 +274,8 @@ public class Enemy : MonoBehaviour
         else if (dv.sqrMagnitude < AttackRangeIn * AttackRangeIn)
         {
             nextState = AI_STATE.ATTACK;
-            myAgent.SetDestination(transform.position); //Stop
+            if (myAgent)
+                myAgent.SetDestination(transform.position); //Stop
         }
         else
         {
@@ -286,7 +287,8 @@ public class Enemy : MonoBehaviour
                 if (SearchTarget())
                 {
                     targetPos = targetObj.transform.position;
-                    myAgent.SetDestination(targetPos);
+                    if (myAgent)
+                        myAgent.SetDestination(targetPos);
                     stateTime = chaseCheckTime;
 
                     //更新面向
@@ -306,7 +308,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void UpdateAttack()
     {
-        if ( !myAgent || !targetObj || !targetObj.activeInHierarchy)
+        if ( !targetObj || !targetObj.activeInHierarchy)
         {
             nextState = AI_STATE.IDLE;
             return;
