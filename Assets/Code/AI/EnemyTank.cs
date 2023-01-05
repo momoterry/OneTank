@@ -5,8 +5,14 @@ using UnityEngine;
 public class EnemyTank : Enemy
 {
     public GameObject bulletRef;
-
+    public float initDirAngle = 180.0f;
     protected TankController myTankController;
+
+    public void SetTankDirAngle(float angle)
+    {
+        Vector3 tankDir = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+        myTankController.SetTankDir(tankDir, tankDir);
+    }
 
     private void Awake()
     {
@@ -15,6 +21,7 @@ public class EnemyTank : Enemy
         {
             print("ERROR !!!! Must have a TankController !!!!");
         }
+        SetTankDirAngle(initDirAngle);
     }
 
     protected override void UpdateChase()

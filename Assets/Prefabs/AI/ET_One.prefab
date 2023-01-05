@@ -183,6 +183,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   mySPAimator: {fileID: 0}
   bulletRef: {fileID: 8101537965375270392, guid: ca34afc40c68477408382ddc1fd426c6, type: 3}
+  initDirAngle: 90
 --- !u!114 &8639384707586398088
 MonoBehaviour:
   m_ObjectHideFlags: 0
