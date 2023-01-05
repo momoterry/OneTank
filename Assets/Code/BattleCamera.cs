@@ -8,7 +8,7 @@ public class BattleCamera : MonoBehaviour
     public Vector3 targetOffset;
 
     protected float xEdge = 4.0f;
-    protected float yEdge = 4.0f;
+    protected float yEdge = 2.0f;
     protected bool isMoving = false;
     protected float moveCloseRange = 0.1f;
     protected float moveSpeed = 4.0f;
