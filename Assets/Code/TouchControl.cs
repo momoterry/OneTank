@@ -15,12 +15,10 @@ public class TouchControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-//#if !TOUCH_MOVE
         if (GameSystem.IsUseVpad())
         {
             this.enabled = false;
         }
-//#endif
     }
 
     // Update is called once per frame
@@ -36,7 +34,7 @@ public class TouchControl : MonoBehaviour
                 //Vector3 dir = mWorldMousePos - touchPos;
                 Vector3 dir = mPos - touchMousePos;
                 dir = new Vector3(dir.x, 0, dir.y);
-                if (dir.magnitude > 0.25f)
+                if (dir.magnitude > 0.5f)
                 {
                     thePC.OnSetupFace(dir.normalized);
                 }
@@ -69,11 +67,4 @@ public class TouchControl : MonoBehaviour
         }
     }
 
-    //private void OnMouseUp()
-    //{
-    //    print("Mouse Up !!");
-    //    isTouching = false;
-    //}
-
-    //
 }

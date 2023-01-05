@@ -60,7 +60,7 @@ MonoBehaviour:
   SearchRange: 8
   canRevie: 1
   PositionRangeIn: 0.25
-  PositionRangeOut: 1
+  PositionRangeOut: 0.5
   AttackRangeIn: 10
   AttackRangeOut: 12
   attackWait: 0.2
