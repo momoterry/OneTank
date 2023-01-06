@@ -47,8 +47,8 @@ public class PC_One : PlayerControllerBase
     //移動和面向
     protected Vector3 faceDir;
 
-    protected Vector3 faceFront;
-    protected FaceFrontType faceFrontType;
+    //protected Vector3 faceFront;
+    //protected FaceFrontType faceFrontType;
 
     //protected Animator myAnimator;
 
@@ -61,14 +61,6 @@ public class PC_One : PlayerControllerBase
 
     //直接傷害相關
     protected Damage myDamage;
-
-    //升級相關
-    //protected float HP_Up_Ratio = 0.6f;
-    //protected float ATK_Up_Ratio = 0.6f;
-    //protected int HP_UP_Max = 99;
-    //protected int ATK_UP_MAX = 99;
-    //protected int HP_Up = 0;
-    //protected int ATK_Up = 0;
 
     protected Hp_BarHandler myHPHandler;
 
@@ -90,10 +82,10 @@ public class PC_One : PlayerControllerBase
         return faceDir;
     }
 
-    public override FaceFrontType GetFaceFront()
-    {
-        return faceFrontType;
-    }
+    //public override FaceFrontType GetFaceFront()
+    //{
+    //    return faceFrontType;
+    //}
 
     // Start is called before the first frame update
     protected void Start()
@@ -289,13 +281,13 @@ public class PC_One : PlayerControllerBase
     {
         //faceDir = Vector3.RotateTowards(Vector3.forward, Vector3.right, angle * Mathf.Deg2Rad, 0);
         faceDir = Quaternion.Euler(0, angle, 0) * Vector3.forward;
-        SetupFrontDirection();
+        //SetupFrontDirection();
     }
 
     public override void SetupFaceDir(Vector3 dir)
     {
         faceDir = dir;
-        SetupFrontDirection();
+        //SetupFrontDirection();
     }
 
     public override void DoTeleport(Vector3 position, float faceAngle)
@@ -305,7 +297,7 @@ public class PC_One : PlayerControllerBase
         if (myDollManager)
         {
             myDollManager.SetMasterPosition(transform.position);
-            myDollManager.SetMasterDirection(faceDir, faceFrontType);
+            //myDollManager.SetMasterDirection(faceDir, faceFrontType);
             myDollManager.ForceMoveAll();
         }
     }
@@ -497,7 +489,7 @@ public class PC_One : PlayerControllerBase
 
             faceDir.y = 0;      //XZ Plan
 
-            SetupFrontDirection();
+            //SetupFrontDirection();
 
             if (currState == PC_STATE.ATTACK_AUTO)
             {
@@ -512,60 +504,7 @@ public class PC_One : PlayerControllerBase
             }
         }
 
-        //bool isRun = (myAgent.velocity.magnitude > 0.1f) || bMove;
-        //if (myAnimator)
-        //{
-        //    myAnimator.SetBool("Run", isRun);
-        //}
-        //if (mySPAnimator)
-        //{
-        //    mySPAnimator.SetIsRun(isRun);
-        //}
     }
-
-    private void SetupFrontDirection()
-    {
-        if (faceDir.z > faceDir.x)
-        {
-            if (faceDir.z > -faceDir.x)
-            {
-                faceFront = Vector3.forward;
-                faceFrontType = FaceFrontType.UP;
-            }
-            else
-            {
-                faceFront = Vector3.left;
-                faceFrontType = FaceFrontType.LEFT;
-            }
-        }
-        else
-        {
-            if (faceDir.z > -faceDir.x)
-            {
-                faceFront = Vector3.right;
-                faceFrontType = FaceFrontType.RIGHT;
-            }
-            else
-            {
-                faceFront = Vector3.back;
-                faceFrontType = FaceFrontType.DOWN;
-            }
-        }
-        //if (myAnimator)
-        //{
-        //    myAnimator.SetFloat("X", faceDir.x);
-        //    myAnimator.SetFloat("Y", faceDir.z);
-        //}
-        if (mySPAnimator)
-        {
-            mySPAnimator.SetXY(faceDir.x, faceDir.z);
-        }
-
-
-    }
-
-
-
 
     public override void OnMoveToPosition(Vector3 target)
     {
@@ -580,6 +519,7 @@ public class PC_One : PlayerControllerBase
     {
         myDollManager.transform.rotation = Quaternion.LookRotation(faceTo, Vector3.up);
         myDollManager.OnUpdateHint(faceTo);
+        faceDir = faceTo;
     }
 
     public void OnMoveToPositionEnd()

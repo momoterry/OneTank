@@ -7,6 +7,7 @@ public class BattleCamera : MonoBehaviour
     // Start is called before the first frame update
     public Vector3 targetOffset;
 
+    protected float focusForward = 3.0f;    //往 PC 前方多遠聚焦
     protected float xEdge = 4.0f;
     protected float yEdge = 2.0f;
     protected bool isMoving = false;
@@ -14,6 +15,7 @@ public class BattleCamera : MonoBehaviour
     protected float moveSpeed = 4.0f;
 
     protected Vector3 targetPos;
+    protected Vector3 targetFocus;
 
     void Start()
     {
@@ -24,20 +26,25 @@ public class BattleCamera : MonoBehaviour
     void Update()
     {
 
-        GameObject thePlayer = BattleSystem.GetInstance().GetPlayer();
-        if (thePlayer)
+        //GameObject thePlayer = BattleSystem.GetInstance().GetPlayer();
+        PC_One thePC = BattleSystem.GetPC();
+        if (thePC)
         {
-            targetPos = thePlayer.transform.position + targetOffset;
+            targetPos = thePC.transform.position + targetOffset;
+            targetPos.y = transform.position.y;
+            Vector3 targetFace = thePC.GetFaceDir();
+            targetFocus = targetPos + targetFace * focusForward;
             targetPos.y = transform.position.y;
 
             //TODO Smooth move
             //transform.position = targetPos;
         }
 
-        Vector3 diff = targetPos - transform.position;
+
         if (isMoving)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
+            Vector3 diff = targetFocus - transform.position;
+            transform.position = Vector3.MoveTowards(transform.position, targetFocus, Time.deltaTime * moveSpeed);
             if (diff.sqrMagnitude <= 4.0f)
             {
                 isMoving = false;
@@ -45,6 +52,7 @@ public class BattleCamera : MonoBehaviour
         }
         else
         {
+            Vector3 diff = targetPos - transform.position;
             if ( Mathf.Abs(diff.z) > yEdge || Mathf.Abs(diff.x) > xEdge)
             {
                 isMoving = true;
