@@ -171,7 +171,7 @@ MonoBehaviour:
   MaxHP: 300
   spawnFX: {fileID: 0}
   deadFX: {fileID: 8091667162185462, guid: bdfc698cb8b0b5b4dbe807724abf6fa9, type: 3}
-  debris: {fileID: 4102302037370830796, guid: f9708512c0100ae4c9393ca2cd4ea6a3, type: 3}
+  debris: {fileID: 4005502135651534345, guid: c1320f4954c56724691dba426f8da141, type: 3}
   SpawnWaitTime: 0.1
   ChaseRangeIn: 8
   ChaseRangeOut: 12
@@ -252,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hull: {fileID: 7368833232450986722}
   turret: {fileID: 693845811769459888}
+  GunLength: 1
   RunSpeed: 3
   targetCloseRange: 0.25
   hullRotateSpeed: 180
