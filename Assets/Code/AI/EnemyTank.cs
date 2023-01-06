@@ -50,10 +50,7 @@ public class EnemyTank : Enemy
         // TODO: 檢查是否玩家在視野
         if (bulletRef)
         {
-            Vector3 shootPoint = gameObject.transform.position + faceDir * 0.5f;
-
-            GameObject newObj = Instantiate(bulletRef, shootPoint, Quaternion.Euler(90, 0, 0), null);
-
+            GameObject newObj = BattleSystem.SpawnGameObj(bulletRef, myTankController.GetMuzzlePos());
             if (newObj)
             {
                 bullet_base newBullet = newObj.GetComponent<bullet_base>();

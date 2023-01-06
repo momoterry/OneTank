@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4032685806379418581}
   - component: {fileID: 7457912132873835176}
+  - component: {fileID: 6830316614392324998}
   - component: {fileID: -894024693914061495}
   - component: {fileID: -2225462949142647}
   - component: {fileID: 1100153545719211910}
@@ -74,6 +75,24 @@ MonoBehaviour:
   turretLength: 0.75
   hullRotateSpeed: 180
   turretRotateSpeed: 180
+--- !u!114 &6830316614392324998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4032685806379418579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c4a09505e245a46b563c4cf8a8a8ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hull: {fileID: 8034510613896105999}
+  turret: {fileID: 4180285544457865961}
+  RunSpeed: 6
+  targetCloseRange: 0.25
+  hullRotateSpeed: 180
+  turretRotateSpeed: 240
 --- !u!114 &-894024693914061495
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,61 +6,22 @@ public class TankOne : DollAuto
 {
     public GameObject hull;
     public GameObject turret;
-    public float turretLength = 1.0f;
-    public float hullRotateSpeed = 180.0f;
-    public float turretRotateSpeed = 240.0f;
 
-    protected Vector3 hullBaceDir = Vector3.forward;
-    protected Vector3 hullDir = Vector3.forward;
-    protected float hullAngle = 0;
+    protected TankController myTankController;
 
-    protected Vector3 turretBaseDir = Vector3.forward;
-    protected Vector3 turretDir = Vector3.forward;
-    protected float turretAngle = 0;
-
-    protected void UpdateTankMove()
+    protected void Awake()
     {
-        //myAgent.SetDestination(mySlot.position);
-        //Vector3 toDir = myAgent.desiredVelocity;
-
-        Vector3 toDir = mySlot.position - transform.position;
-        toDir.y = 0;
-        toDir.Normalize();
-
-
-        float diffAngle = Vector3.Angle(hullDir, toDir);
-        if (diffAngle < 3.0f)
+        myTankController = GetComponent<TankController>();
+        if (myTankController == null)
         {
-            //對準了才移動
-            transform.position = Vector3.MoveTowards(transform.position, mySlot.position, RunSpeed * Time.deltaTime);
-            //myAgent.speed = RunSpeed;
-        } 
-        //else
-        //{
-        //    myAgent.speed = 0;
-        //}
-
-        hullDir = Vector3.RotateTowards(hullDir, toDir, Time.deltaTime * hullRotateSpeed * Mathf.Deg2Rad, 0);
-        hullAngle = Vector3.SignedAngle(hullBaceDir, hullDir, Vector3.down);
-        hull.transform.localRotation = Quaternion.Euler(0, 0, hullAngle);
-    }
-
-    protected void UpdateHullToFront()
-    {
-        Vector3 front = myMaster.transform.forward;
-        front.y = 0;
-
-        hullDir = Vector3.RotateTowards(hullDir, front, Time.deltaTime * hullRotateSpeed * Mathf.Deg2Rad, 0);
-        hullAngle = Vector3.SignedAngle(hullBaceDir, hullDir, Vector3.down);
-        hull.transform.localRotation = Quaternion.Euler(0, 0, hullAngle);
+            print("ERROR !!!! Must have a TankController !!!!");
+        }
     }
 
     protected override void UpdateFollow()
     {
-        //myFace = BattleSystem.GetPC().GetFaceDir();
-        //transform.position = Vector3.MoveTowards(transform.position, mySlot.position, RunSpeed * Time.deltaTime);
-        //UpdateTankMove();
-        UpdateHullToFront();
+        //UpdateHullToFront();
+        myTankController.SetHullToDir(myMaster.transform.forward);
 
         if (autoStateTime > 0.1f)
         {
@@ -79,33 +40,35 @@ public class TankOne : DollAuto
 
     protected override void UpdateAttack()
     {
-        bool waitRotate = false;
+        //bool waitRotate = false;
         if (myTarget)
         {
             Vector3 toDir = myTarget.transform.position - transform.position;
             toDir.y = 0;
             toDir.Normalize();
 
-            float diffAngle = Vector3.Angle(turretDir, toDir);
-            if (diffAngle > 3.0f)
-            {
-                waitRotate = true;
-            }
-
-            turretDir = Vector3.RotateTowards(turretDir, toDir, Time.deltaTime * turretRotateSpeed * Mathf.Deg2Rad, 0);
-            turretAngle = Vector3.SignedAngle(turretBaseDir, turretDir, Vector3.down);
-            turret.transform.localRotation = Quaternion.Euler(0, 0, turretAngle);
+            myTankController.SetTurretToDir(toDir);
         }
-        if (!waitRotate)
+
+        if (myTankController.GetIsTurretReady())
             base.UpdateAttack();
 
-        UpdateHullToFront();
+        //UpdateHullToFront();
+        myTankController.SetHullToDir(myMaster.transform.forward);
     }
 
     override protected void UpdateGoBack()
     {
         //myFace = (mySlot.position - transform.position).normalized;
-        UpdateTankMove();
+        //UpdateTankMove();
+        myTankController.SetMoveTarget(mySlot.position);
+        if (myTarget)
+        {
+            Vector3 toDir = myTarget.transform.position - transform.position;
+            toDir.y = 0;
+            toDir.Normalize();
+            myTankController.SetTurretToDir(toDir);
+        }
 
         float dis = (mySlot.position - transform.position).magnitude;
 
@@ -117,14 +80,14 @@ public class TankOne : DollAuto
 
     protected override void DoOneAttack()
     {
-        Vector3 td = turretDir;
+        Vector3 td = myTankController.GetTurretDirt();
 
-        GameObject bulletObj = BattleSystem.SpawnGameObj(bulletRef, transform.position + turretDir * turretLength);
+        GameObject bulletObj = BattleSystem.SpawnGameObj(bulletRef, myTankController.GetMuzzlePos());
 
         bullet_base b = bulletObj.GetComponent<bullet_base>();
         if (b)
         {
-            b.InitValue(DAMAGE_GROUP.PLAYER, AttackInit, turretDir, myTarget);
+            b.InitValue(DAMAGE_GROUP.PLAYER, AttackInit, td, myTarget);
         }
     }
 

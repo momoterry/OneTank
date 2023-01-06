@@ -7,6 +7,8 @@ public class TankController : MonoBehaviour
     public GameObject hull;
     public GameObject turret;
 
+    public float GunLength = 1.0f; //¯¥¤fªø«×
+
     public float RunSpeed = 6.0f;
     public float targetCloseRange = 0.25f;
 
@@ -28,11 +30,14 @@ public class TankController : MonoBehaviour
     protected bool isTurrestReady = false;
 
     public bool GetIsTurretReady() { return isTurrestReady; }
+    public Vector3 GetTurretDirt() { return turretDir; }
+    public Vector3 GetHullDir() { return hullDir; }
 
     public void SetHullToDir(Vector3 dir) { hullToDir = dir; }
     public void SetTurretToDir(Vector3 dir) { turretToDir = dir; }
     public void SetMoveTarget(Vector3 pos) { moveTargetPos = pos; }
 
+    public Vector3 GetMuzzlePos() { return transform.position + turretDir * GunLength; }
     private void Awake()
     {
         moveTargetPos = transform.position;
