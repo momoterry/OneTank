@@ -56,7 +56,7 @@ MonoBehaviour:
   ID: TankAlpha
   icon: {fileID: 0}
   positionType: 0
-  bulletRef: {fileID: 2820250728779406873, guid: 643742643be00894ea99e808074e6e26, type: 3}
+  bulletRef: {fileID: 8101537965375270392, guid: 7c897da744706b6488a7adb2df90df42, type: 3}
   AttackInit: 30
   SearchRange: 8
   canRevie: 1
@@ -72,9 +72,6 @@ MonoBehaviour:
   mySpAnimator: {fileID: 0}
   hull: {fileID: 8034510613896105999}
   turret: {fileID: 4180285544457865961}
-  turretLength: 0.75
-  hullRotateSpeed: 180
-  turretRotateSpeed: 180
 --- !u!114 &6830316614392324998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hull: {fileID: 8034510613896105999}
   turret: {fileID: 4180285544457865961}
+  GunLength: 1
   RunSpeed: 6
   targetCloseRange: 0.25
   hullRotateSpeed: 180
