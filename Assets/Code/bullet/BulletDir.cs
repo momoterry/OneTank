@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BulletDir : bullet
 {
-    public GameObject dirTarget; 
+    public GameObject dirTarget;
+
+    [SerializeField] protected float DefaultAngle = 0;
 
     public override void InitValue(DAMAGE_GROUP g, float damage, Vector3 targetVec, GameObject targetObject = null)
     {
@@ -14,6 +16,6 @@ public class BulletDir : bullet
             dirTarget = gameObject;
         }
 
-        dirTarget.transform.rotation = Quaternion.Euler(90.0f, Vector3.SignedAngle(Vector3.back, targetVec, Vector3.up), 0);
+        dirTarget.transform.rotation = Quaternion.Euler(90.0f, Vector3.SignedAngle(Vector3.forward, targetVec, Vector3.up), DefaultAngle);
     }
 }
