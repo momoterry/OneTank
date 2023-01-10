@@ -175,14 +175,14 @@ MonoBehaviour:
   SpawnWaitTime: 0.1
   ChaseRangeIn: 8
   ChaseRangeOut: 12
-  AttackRangeIn: 4
-  AttackRangeOut: 6
+  AttackRangeIn: 5
+  AttackRangeOut: 7
   AttackWait: 0.2
   AttackCD: 2
   Attack: 20
   myAnimator: {fileID: 0}
   mySPAimator: {fileID: 0}
-  bulletRef: {fileID: 8101537965375270392, guid: ca34afc40c68477408382ddc1fd426c6, type: 3}
+  bulletRef: {fileID: 8101537965375270392, guid: 429efe9ec360acf48b81b42eeeef4d2e, type: 3}
   initDirAngle: 90
 --- !u!114 &8639384707586398088
 MonoBehaviour:
