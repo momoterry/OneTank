@@ -25,7 +25,7 @@ public class HitBody : MonoBehaviour
     void Start()
     {
         hp = HP_Max;
-        myHPHandler = GetComponent<Hp_BarHandler>();
+        //myHPHandler = GetComponent<Hp_BarHandler>();
     }
 
     private void Update()

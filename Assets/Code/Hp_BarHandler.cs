@@ -8,7 +8,7 @@ public class Hp_BarHandler : MonoBehaviour
     public float barHeight = 1.0f;
 
     private GameObject myBarObj;
-    private HP_Bar myBar;
+    //private HP_Bar myBar;
     private HpBar_PA myBarPA;
 
     // Start is called before the first frame update
@@ -19,9 +19,9 @@ public class Hp_BarHandler : MonoBehaviour
 #else
         myBarObj = Instantiate(barRef, Vector3.zero, Quaternion.identity, null);
 #endif
-        myBar = myBarObj.GetComponent<HP_Bar>();
-        if (myBar)
-            myBar.SetValue(50.0f, 100.0f);
+        //myBar = myBarObj.GetComponent<HP_Bar>();
+        //if (myBar)
+        //    myBar.SetValue(50.0f, 100.0f);
         myBarPA = myBarObj.GetComponent<HpBar_PA>();
         SetBarPosition();
     }
@@ -40,8 +40,8 @@ public class Hp_BarHandler : MonoBehaviour
 #else
         pos.y += barHeight;
 #endif
-        if (myBar)
-            myBar.SetWorldPosition(pos);
+        //if (myBar)
+        //    myBar.SetWorldPosition(pos);
         if (myBarPA)
             myBarPA.SetWorldPosition(pos);
     }
@@ -56,8 +56,8 @@ public class Hp_BarHandler : MonoBehaviour
 
     public void SetHP( float hp, float hpMax)
     {
-        if (myBar)
-            myBar.SetValue(hp, hpMax);
+        //if (myBar)
+        //    myBar.SetValue(hp, hpMax);
         if (myBarPA)
             myBarPA.SetValue(hp, hpMax);
     }
