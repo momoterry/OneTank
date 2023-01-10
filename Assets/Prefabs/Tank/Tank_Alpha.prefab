@@ -87,7 +87,7 @@ MonoBehaviour:
   hull: {fileID: 8034510613896105999}
   turret: {fileID: 4180285544457865961}
   GunLength: 1
-  RunSpeed: 6
+  RunSpeed: 4
   targetCloseRange: 0.25
   hullRotateSpeed: 180
   turretRotateSpeed: 240
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barRef: {fileID: 3890801454975395505, guid: 90d3a6e24e111214ab4c1f9197425e63, type: 3}
-  barHeight: 0.75
+  barHeight: 1.25
 --- !u!65 &1842341814915461984
 BoxCollider:
   m_ObjectHideFlags: 0

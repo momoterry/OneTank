@@ -221,7 +221,7 @@ public class BattleSystem : MonoBehaviour
         //TODO : 避免 UI 衝突的方法有點暴力, 要改
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.currentSelectedGameObject)
         {
-            //print("Mouse Down On : "+ EventSystem.current.currentSelectedGameObject);
+            print("Mouse Down On : "+ EventSystem.current.currentSelectedGameObject);
 
             RaycastHit hitInfo = new RaycastHit();
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo, Mathf.Infinity, touchLayer))
