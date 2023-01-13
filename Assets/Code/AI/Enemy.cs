@@ -380,6 +380,9 @@ public class Enemy : MonoBehaviour
             nextState = AI_STATE.CHASE;
         }
 
+
+        //Damage Number
+        DmgNumManager.PlayDamageNumber((int)theDamage.damage, transform.position, DAMAGE_NUM_TYPE.NORMAL);
     }
 
     protected void DoDeath()
