@@ -6,6 +6,7 @@ public class TankOne : DollAuto
 {
     public GameObject hull;
     public GameObject turret;
+    protected float AttackRandomRatio = 0.2f;
 
     protected TankController myTankController;
 
@@ -87,7 +88,8 @@ public class TankOne : DollAuto
         bullet_base b = bulletObj.GetComponent<bullet_base>();
         if (b)
         {
-            b.InitValue(DAMAGE_GROUP.PLAYER, AttackInit, td, myTarget);
+            float damage = AttackInit * Random.Range(1.0f - AttackRandomRatio, 1.0f + AttackRandomRatio);
+            b.InitValue(DAMAGE_GROUP.PLAYER, damage, td, myTarget);
         }
     }
 

@@ -32,6 +32,9 @@ public class DamageNumber : MonoBehaviour
             case DAMAGE_NUM_TYPE.BLOCK:
                 color = Color.white;
                 break;
+            case DAMAGE_NUM_TYPE.ENEMY:
+                color = Color.red;
+                break;
         }
         string numText = num.ToString();
         if (theTextMesh)

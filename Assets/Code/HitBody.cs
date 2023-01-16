@@ -43,6 +43,7 @@ public class HitBody : MonoBehaviour
         {
             gameObject.SendMessage("OnDeath", SendMessageOptions.DontRequireReceiver);
         }
+        DmgNumManager.PlayDamageNumber((int)theDamage.damage, theDamage.hitPos, DAMAGE_NUM_TYPE.ENEMY);
     }
 
     public void DoHeal(float healNum)

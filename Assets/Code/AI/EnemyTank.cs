@@ -6,6 +6,8 @@ public class EnemyTank : Enemy
 {
     public GameObject bulletRef;
     public float initDirAngle = 180.0f;
+    public float AttackRandomRatio = 0.2f;
+
     protected TankController myTankController;
 
     public void SetTankDirAngle(float angle)
@@ -60,8 +62,8 @@ public class EnemyTank : Enemy
 
                     td.y = 0;
 
-
-                    newBullet.InitValue(DAMAGE_GROUP.ENEMY, Attack, td);
+                    float damage = Attack * Random.Range(1.0f - AttackRandomRatio, 1.0f + AttackRandomRatio);
+                    newBullet.InitValue(DAMAGE_GROUP.ENEMY, damage, td);
                 }
             }
         }

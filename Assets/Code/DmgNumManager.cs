@@ -7,6 +7,7 @@ public enum DAMAGE_NUM_TYPE
     NORMAL,
     HEAL,
     BLOCK,
+    ENEMY,
 }
 
 public class DmgNumManager : MonoBehaviour
