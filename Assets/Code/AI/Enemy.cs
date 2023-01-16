@@ -177,7 +177,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void SetTarget(GameObject o)
+    protected void SetTarget(GameObject o)
     {
         targetObj = o;
         targetPos = o.transform.position;

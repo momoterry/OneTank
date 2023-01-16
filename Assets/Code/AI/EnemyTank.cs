@@ -7,6 +7,8 @@ public class EnemyTank : Enemy
     public GameObject bulletRef;
     public float initDirAngle = 180.0f;
     public float AttackRandomRatio = 0.2f;
+    public float blockAngle = 60.0f;
+    public float blockRatio = 0.5f;
 
     protected TankController myTankController;
 
@@ -67,6 +69,52 @@ public class EnemyTank : Enemy
                 }
             }
         }
+    }
+
+    void OnDamage(Damage theDamage)
+    {
+        //已經死了，不要再處理以避免重覆擊殺 !!
+        if (hp <= 0)
+        {
+            //print("你已經死了....");
+            return;
+        }
+
+        //計算正面與否
+        //float blockAngle = 60.0f;
+        //float blockRatio = 0.5f;
+        float realDamage = theDamage.damage;
+
+        bool isBlock = false;
+        Vector3 hitDir = theDamage.hitPos - transform.position;
+        hitDir.y = 0;
+        float angle = Vector3.Angle(myTankController.GetHullDir(), hitDir);
+        //print("Angle: " + angle);
+        if (angle < blockAngle)
+        {
+            isBlock = true;
+            realDamage = realDamage * blockRatio;
+        }
+
+        hp -= realDamage;
+        if (hp <= 0)
+        {
+            hp = 0;
+            DoDeath();
+        }
+
+        //從 Idle 中醒來
+        //if (currState == AI_STATE.IDLE)
+        //{
+        //    //TODO: 應該透過子彈來回追發射者
+        //    GameObject po = BattleSystem.GetInstance().GetPlayer();
+        //    SetTarget(po);
+        //    nextState = AI_STATE.CHASE;
+        //}
+
+
+        //Damage Number
+        DmgNumManager.PlayDamageNumber((int)realDamage, theDamage.hitPos, isBlock? DAMAGE_NUM_TYPE.BLOCK:DAMAGE_NUM_TYPE.NORMAL);
     }
 
     //private void OnGUI()
