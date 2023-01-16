@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageNumber : MonoBehaviour
 {
     public TextMesh theTextMesh;
+    public TextMesh[] theTextMeshOutlines;
 
     public float duration = 1.0f;
     protected float timeLeft = 0;
@@ -32,11 +33,16 @@ public class DamageNumber : MonoBehaviour
                 color = Color.white;
                 break;
         }
+        string numText = num.ToString();
         if (theTextMesh)
         {
-            theTextMesh.text = num.ToString();
+            theTextMesh.text = numText;
             theTextMesh.color = color;
-            theTextMesh.gameObject.SetActive(true);
+            //theTextMesh.gameObject.SetActive(true);
+        }
+        foreach (TextMesh tm in theTextMeshOutlines)
+        {
+            tm.text = numText;
         }
         transform.position = pos;
 
@@ -63,7 +69,7 @@ public class DamageNumber : MonoBehaviour
 
     void DoFinish()
     {
-        theTextMesh.gameObject.SetActive(false);
+        //theTextMesh.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 }
