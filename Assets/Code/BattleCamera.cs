@@ -50,7 +50,7 @@ public class BattleCamera : MonoBehaviour
 
             float minDist = 0.5f;
             float minSpeed = 1.0f;
-            float maxSpeed = 8.0f;
+            float maxSpeed = 6.0f;
             float AccRatio = 4.0f;
             float breakDis = 2.0f;
             float breakAcc = 2.0f;
