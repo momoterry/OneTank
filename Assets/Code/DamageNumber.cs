@@ -6,8 +6,16 @@ public class DamageNumber : MonoBehaviour
 {
     public TextMesh theTextMesh;
 
-    protected float duration = 1.0f;
+    public float duration = 1.0f;
     protected float timeLeft = 0;
+    protected Animator theAnimator;
+    protected int playID;
+
+    private void Awake()
+    {
+        theAnimator = GetComponent<Animator>();
+        playID = Animator.StringToHash("Play");
+    }
 
     public void Play(int num, Vector3 pos, DAMAGE_NUM_TYPE type)
     {
@@ -33,6 +41,7 @@ public class DamageNumber : MonoBehaviour
         transform.position = pos;
 
         timeLeft = duration;
+        theAnimator.SetTrigger(playID);
     }
     // Start is called before the first frame update
     void Start()

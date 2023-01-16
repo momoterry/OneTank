@@ -13,6 +13,7 @@ public class DamageArea : AreaEffectBase
 
         Damage myDamage;
         myDamage.damage = defaultDamage;
+        myDamage.hitPos = obj.transform.position;
 
         //PlayerControllerBase pc = obj.GetComponent<PlayerControllerBase>();
         //if (pc)

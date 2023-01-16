@@ -76,6 +76,7 @@ public class BulletTrace : bullet_base
 
         Damage myDamage;
         myDamage.damage = baseDamage;
+        myDamage.hitPos = targetObj.transform.position;
         if (targetObj)
             targetObj.SendMessage("OnDamage", myDamage);
     }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 260968607186956194}
   - component: {fileID: 7945975075658662701}
+  - component: {fileID: 6899822264812555528}
   m_Layer: 0
   m_Name: DamageNumber
   m_TagString: Untagged
@@ -46,6 +47,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theTextMesh: {fileID: 717788247483050561}
+  duration: 1.25
+--- !u!95 &6899822264812555528
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4394807406156685048}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 065e005a6aed1cb49a2b52bba3276f2a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8042073867583478717
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,12 +153,12 @@ TextMesh:
   m_GameObject: {fileID: 8042073867583478717}
   m_Text: 300
   m_OffsetZ: 0
-  m_CharacterSize: 0.1
+  m_CharacterSize: 0.25
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 36
+  m_FontSize: 32
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 167ae8c93ffdfb845937e0749a409813, type: 3}

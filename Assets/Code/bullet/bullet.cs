@@ -6,6 +6,7 @@ using UnityEngine;
 public struct Damage
 {
     public float damage;
+    public Vector3 hitPos;
 }
 
 public enum DAMAGE_GROUP
@@ -132,17 +133,20 @@ public class bullet : bullet_base
         //print("bullet::OnTriggerEnter : " + col);
         bool hit = false;
         bool destroy = false;
+        bool doDamage = false;
         if (col.gameObject.CompareTag("Enemy") && group == DAMAGE_GROUP.PLAYER)
         {
             //print("Trigger:  Hit Enemy !!");
             hit = true;
-            col.gameObject.SendMessage("OnDamage", myDamage);
+            //col.gameObject.SendMessage("OnDamage", myDamage);
+            doDamage = true;
         }
         else if ((col.gameObject.CompareTag("Player") || col.gameObject.CompareTag("Doll")) && group == DAMAGE_GROUP.ENEMY)
         {
             //print("Trigger:  Hit Player or Doll !!");
             hit = true;
-            col.gameObject.SendMessage("OnDamage", myDamage);
+            //col.gameObject.SendMessage("OnDamage", myDamage);
+            doDamage = true;
         }
         else if (col.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
@@ -158,15 +162,14 @@ public class bullet : bullet_base
         if (hit)
         {
             Vector3 hitPos = col.ClosestPoint(transform.position);
+            if (doDamage)
+            {
+                myDamage.hitPos = hitPos;
+                col.gameObject.SendMessage("OnDamage", myDamage);
+            }
 
-            //#if XZ_PLAN
-            //            Instantiate(hitFX, hitPos, Quaternion.Euler(90, 0, 0), null);
-            //#else
-            //            Instantiate(hitFX, hitPos, Quaternion.identity, null);
-            //#endif
             BattleSystem.GetInstance().SpawnGameplayObject(hitFX, hitPos, false);
 
-            //Destroy(gameObject);
             destroy = true;
         }
 

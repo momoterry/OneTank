@@ -382,7 +382,8 @@ public class Enemy : MonoBehaviour
 
 
         //Damage Number
-        DmgNumManager.PlayDamageNumber((int)theDamage.damage, transform.position, DAMAGE_NUM_TYPE.NORMAL);
+        //print("Got Damage at: " + theDamage.hitPos);
+        DmgNumManager.PlayDamageNumber((int)theDamage.damage, theDamage.hitPos, DAMAGE_NUM_TYPE.NORMAL);
     }
 
     protected void DoDeath()
