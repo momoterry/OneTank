@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 
 public class PC_One : PlayerControllerBase
@@ -504,6 +506,38 @@ public class PC_One : PlayerControllerBase
             }
         }
 
+    }
+
+    //=================== 新的 Touch Control 相關 ==============
+
+    public void OnTouchDown(Vector3 pos)
+    {
+        if (inputActive && (currState == PC_STATE.NORMAL || currState == PC_STATE.ATTACK_AUTO))
+        {
+            myDollManager.transform.position = pos;
+            myDollManager.OnStartHint();
+        }
+    }
+
+    public void OnTouchDrag(Vector3 pos, Vector3 dragVec)
+    {
+        if (dragVec.sqrMagnitude > 0.25f)
+        {
+            Vector3 dragDir = dragVec.normalized;
+            myDollManager.transform.rotation = Quaternion.LookRotation(dragDir, Vector3.up);
+            myDollManager.OnUpdateHint(dragDir);
+            faceDir = dragDir;
+        }
+    }
+
+    public void OnTouchFinish(Vector3 pos, Vector3 dragVec)
+    {
+        //myDollManager.transform.position = pos;
+        //if (dragVec.sqrMagnitude > 0.25f)
+        //{
+        //    myDollManager.transform.rotation = Quaternion.LookRotation(dragVec.normalized, Vector3.up);
+        //}
+        myDollManager.OnFinishHint();
     }
 
     public override void OnMoveToPosition(Vector3 target)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,6 +12,7 @@ public class TouchControl : MonoBehaviour
     protected bool isTouching = false;
     protected Vector3 touchPos;
     protected Vector3 touchMousePos;
+    protected Vector3 dragDir;
 
     // Start is called before the first frame update
     void Start()
@@ -27,16 +29,17 @@ public class TouchControl : MonoBehaviour
         if (isTouching)
         {
             Vector3 mPos = Input.mousePosition;
-            //Vector3 mWorldMousePos = Camera.main.ScreenToWorldPoint(mPos);
-            //mWorldMousePos.y = 0.0f;
+            Vector3 mWorldMousePos = Camera.main.ScreenToWorldPoint(mPos);
+            mWorldMousePos.y = 0.0f;
             if (thePC)
             {
-                //Vector3 dir = mWorldMousePos - touchPos;
-                Vector3 dir = mPos - touchMousePos;
-                dir = new Vector3(dir.x, 0, dir.y);
-                if (dir.magnitude > 0.5f)
+                //dragDir = mWorldMousePos - touchPos;
+                dragDir = mPos - touchMousePos;
+                dragDir = new Vector3(dragDir.x, 0, dragDir.y);
+                if (dragDir.magnitude > 0.5f)
                 {
-                    thePC.OnSetupFace(dir.normalized);
+                    //thePC.OnSetupFace(dir.normalized);
+                    thePC.OnTouchDrag(touchPos+ dragDir, dragDir);
                 }
             }
         }
@@ -53,18 +56,25 @@ public class TouchControl : MonoBehaviour
             touchPos = point;
             touchMousePos = Input.mousePosition;
             touchPos.y = 0.0f;
-            thePC.OnMoveToPosition(touchPos);
+            dragDir = Vector3.zero;
+            //thePC.OnMoveToPosition(touchPos);
+            thePC.OnTouchDown(touchPos);
         }
     }
 
     void OnBattleTouchUp()
     {
-        isTouching = false;
-        thePC = BattleSystem.GetPC();
-        if (thePC)
+        if (isTouching)
         {
-            thePC.OnMoveToPositionEnd();
+            //thePC = BattleSystem.GetPC();
+            if (thePC)
+            {
+                //thePC.OnMoveToPositionEnd();
+                thePC.OnTouchFinish(touchPos + dragDir, dragDir);
+            }
         }
+
+        isTouching = false;
     }
 
 }
