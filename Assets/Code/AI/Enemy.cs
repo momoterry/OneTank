@@ -193,7 +193,7 @@ public class Enemy : MonoBehaviour
         Collider[] cols = Physics.OverlapSphere(transform.position, ChaseRangeIn, LayerMask.GetMask("Character"));
         foreach (Collider col in cols)
         {
-            if (col.gameObject.CompareTag("Player")|| col.gameObject.CompareTag("Doll"))
+            if (/*col.gameObject.CompareTag("Player")|| */col.gameObject.CompareTag("Doll"))
             {
 
                 float dis = (col.gameObject.transform.position - gameObject.transform.position).magnitude;
