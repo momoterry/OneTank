@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class DamageNumber : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class DamageNumber : MonoBehaviour
     protected Animator theAnimator;
     protected int playID;
 
+    public static Color COLOR_NORMAL = Color.yellow;
+    public static Color COLOR_BLOCK = Color.HSVToRGB(0, 0, 1.0f);
+    public static Color COLOR_HEAL = Color.green;
+    public static Color COLOR_BY_ENEMY = Color.red;
+    public static Color COLOR_BLOCK_ENEMY = Color.HSVToRGB(0.0833f, 1.0f, 1.0f);
+
     private void Awake()
     {
         theAnimator = GetComponent<Animator>();
@@ -21,19 +28,25 @@ public class DamageNumber : MonoBehaviour
     public void Play(int num, Vector3 pos, DAMAGE_NUM_TYPE type)
     {
         Color color = Color.white;
+        float textScale = 1.0f;
         switch (type)
         {
             case DAMAGE_NUM_TYPE.NORMAL:
-                color = Color.yellow;
+                color = COLOR_NORMAL;
                 break;
             case DAMAGE_NUM_TYPE.HEAL:
-                color = Color.green;
+                color = COLOR_HEAL;
                 break;
             case DAMAGE_NUM_TYPE.BLOCK:
-                color = Color.white;
+                color = COLOR_BLOCK;
+                textScale = 0.8f;
                 break;
-            case DAMAGE_NUM_TYPE.ENEMY:
-                color = Color.red;
+            case DAMAGE_NUM_TYPE.BY_ENEMY:
+                color = COLOR_BY_ENEMY;
+                break;
+            case DAMAGE_NUM_TYPE.BLOCK_ENEMY:
+                color = COLOR_BLOCK_ENEMY;
+                textScale = 0.8f;
                 break;
         }
         string numText = num.ToString();
@@ -41,13 +54,16 @@ public class DamageNumber : MonoBehaviour
         {
             theTextMesh.text = numText;
             theTextMesh.color = color;
+            //theTextMesh.gameObject.transform.localScale = Vector3.one * textScale;
             //theTextMesh.gameObject.SetActive(true);
         }
         foreach (TextMesh tm in theTextMeshOutlines)
         {
             tm.text = numText;
+            //tm.transform.localScale = Vector3.one * textScale;
         }
         transform.position = pos;
+        transform.localScale = Vector3.one * textScale;
 
         timeLeft = duration;
         theAnimator.SetTrigger(playID);

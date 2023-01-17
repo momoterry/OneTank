@@ -7,7 +7,7 @@ public class EnemyTank : Enemy
     public GameObject bulletRef;
     public float initDirAngle = 180.0f;
     public float AttackRandomRatio = 0.2f;
-    public float blockAngle = 60.0f;
+    public float blockAngle = 50.0f;
     public float blockRatio = 0.5f;
 
     protected TankController myTankController;
@@ -84,16 +84,18 @@ public class EnemyTank : Enemy
         //float blockAngle = 60.0f;
         //float blockRatio = 0.5f;
         float realDamage = theDamage.damage;
-
         bool isBlock = false;
-        Vector3 hitDir = theDamage.hitPos - transform.position;
-        hitDir.y = 0;
-        float angle = Vector3.Angle(myTankController.GetHullDir(), hitDir);
-        //print("Angle: " + angle);
-        if (angle < blockAngle)
+        if (blockAngle > 0)
         {
-            isBlock = true;
-            realDamage = realDamage * blockRatio;
+            Vector3 hitDir = theDamage.hitPos - transform.position;
+            hitDir.y = 0;
+            float angle = Vector3.Angle(myTankController.GetHullDir(), hitDir);
+            //print("Angle: " + angle);
+            if (angle < blockAngle)
+            {
+                isBlock = true;
+                realDamage = realDamage * blockRatio;
+            }
         }
 
         hp -= realDamage;

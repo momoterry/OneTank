@@ -19,6 +19,33 @@ public class TankOne : DollAuto
         }
     }
 
+    protected override bool SearchTarget()
+    {
+        GameObject foundEnemy = null;
+        float minDistance = Mathf.Infinity;
+
+        Collider[] cols = Physics.OverlapSphere(transform.position, SearchRange, LayerMask.GetMask("Character"));
+        foreach (Collider col in cols)
+        {
+            //print("I Found: "+ col.gameObject.name);
+            if (col.gameObject.CompareTag("Enemy"))
+            {
+                //float dis = (col.gameObject.transform.position - gameObject.transform.position).magnitude;
+                float dis = Vector3.Distance(col.gameObject.transform.position, transform.position);
+
+                if (dis < minDistance)
+                {
+                    minDistance = dis;
+                    foundEnemy = col.gameObject;
+                }
+            }
+        }
+
+        myTarget = foundEnemy;
+
+        return (foundEnemy != null);
+    }
+
     protected override void UpdateFollow()
     {
         //UpdateHullToFront();

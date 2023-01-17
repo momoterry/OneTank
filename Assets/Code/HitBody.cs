@@ -13,10 +13,13 @@ public class HitBody : MonoBehaviour
     // Start is called before the first frame update
     public float HP_Max = 100.0f;
     public float DamageRatio = 1.0f;
+    public float blockAngle = -1.0f;
+    public float blockRatio = 0.5f;
     // 
     protected float hp;
 
     Hp_BarHandler myHPHandler;
+    TankController myTankController;
 
     // Public Get Function
     public float GetHPMax() { return HP_Max; }
@@ -26,6 +29,7 @@ public class HitBody : MonoBehaviour
     {
         hp = HP_Max;
         myHPHandler = GetComponent<Hp_BarHandler>();
+        myTankController = GetComponent<TankController>();
     }
 
     private void Update()
@@ -38,12 +42,27 @@ public class HitBody : MonoBehaviour
 
     void OnDamage(Damage theDamage)
     {
-        hp -= theDamage.damage * DamageRatio;
+        float realDamage = theDamage.damage * DamageRatio;
+        bool isBlock = false;
+        if (blockAngle > 0 && myTankController)
+        {
+            Vector3 hitDir = theDamage.hitPos - transform.position;
+            hitDir.y = 0;
+            float angle = Vector3.Angle(myTankController.GetHullDir(), hitDir);
+            //print("Angle: " + angle);
+            if (angle < blockAngle)
+            {
+                isBlock = true;
+                realDamage = realDamage * blockRatio;
+            }
+        }
+
+        hp -= realDamage;
         if (hp <= 0)
         {
             gameObject.SendMessage("OnDeath", SendMessageOptions.DontRequireReceiver);
         }
-        DmgNumManager.PlayDamageNumber((int)theDamage.damage, theDamage.hitPos, DAMAGE_NUM_TYPE.ENEMY);
+        DmgNumManager.PlayDamageNumber((int)realDamage, theDamage.hitPos, isBlock ? DAMAGE_NUM_TYPE.BLOCK_ENEMY:DAMAGE_NUM_TYPE.BY_ENEMY);
     }
 
     public void DoHeal(float healNum)

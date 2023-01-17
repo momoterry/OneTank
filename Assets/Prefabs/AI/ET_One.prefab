@@ -184,6 +184,9 @@ MonoBehaviour:
   mySPAimator: {fileID: 0}
   bulletRef: {fileID: 8101537965375270392, guid: 429efe9ec360acf48b81b42eeeef4d2e, type: 3}
   initDirAngle: 180
+  AttackRandomRatio: 0.2
+  blockAngle: 40
+  blockRatio: 0.5
 --- !u!114 &8639384707586398088
 MonoBehaviour:
   m_ObjectHideFlags: 0
