@@ -51,7 +51,7 @@ MonoBehaviour:
   AllDirectioin: 0
   RotateSpeed: -1
   MaxSlot: 40
-  FrontWidth: 4
+  FrontWidth: 3
   slotWidth: 1.5
   slotDepth: 1.5
   hintRef: {fileID: 4734021161119429966, guid: 5a542a50b9aa37144a1435ecf4af82d0, type: 3}
