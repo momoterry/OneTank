@@ -47,8 +47,9 @@ public class TouchControl : MonoBehaviour
             if (isOriginalCenter)
             {
                 dragVec = mPos - touchMousePos;
-                dragVec = new Vector3(dragVec.x, 0, dragVec.y);
-                dragMinL *= (float)Camera.main.scaledPixelHeight / (Camera.main.orthographicSize * 2.0f);
+                float vecRatio = (Camera.main.orthographicSize * 2.0f) / (float)Camera.main.scaledPixelHeight;
+                dragVec = new Vector3(dragVec.x*vecRatio, 0, dragVec.y * vecRatio);
+                //dragMinL *= (float)Camera.main.scaledPixelHeight / (Camera.main.orthographicSize * 2.0f);
             }
             else
             {
@@ -73,6 +74,7 @@ public class TouchControl : MonoBehaviour
             }
             else
             {
+                dragVec = Vector3.zero;
                 if (theHint)
                 {
                     theHint.SetFormationOnOff(false);
@@ -112,7 +114,7 @@ public class TouchControl : MonoBehaviour
             if (thePC)
             {
                 //thePC.OnMoveToPositionEnd();
-                thePC.OnTouchFinish(touchPos + dragVec, dragVec);
+                thePC.OnTouchFinish(touchPos, dragVec);
             }
             if (theHint)
             {

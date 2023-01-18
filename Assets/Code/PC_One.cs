@@ -42,6 +42,9 @@ public class PC_One : PlayerControllerBase
     protected SkillBase autoSkill;
     protected SkillBase[] activeSkillls;
 
+    //·s TouchControl
+    protected bool controlByMouseUp = true;
+
     //Input
     protected MyInputActions theInput;
     protected bool inputActive = false;
@@ -512,9 +515,12 @@ public class PC_One : PlayerControllerBase
 
     public void OnTouchDown(Vector3 pos)
     {
-        if (inputActive && (currState == PC_STATE.NORMAL || currState == PC_STATE.ATTACK_AUTO))
+        if (inputActive)
         {
-            myDollManager.transform.position = pos;
+            if (!controlByMouseUp)
+            {
+                myDollManager.transform.position = pos;
+            }
             //myDollManager.OnStartHint();
         }
     }
@@ -524,9 +530,12 @@ public class PC_One : PlayerControllerBase
         if (dragVec.sqrMagnitude > 0.25f)
         {
             Vector3 dragDir = dragVec.normalized;
-            myDollManager.transform.rotation = Quaternion.LookRotation(dragDir, Vector3.up);
+            if (!controlByMouseUp)
+            {
+                myDollManager.transform.rotation = Quaternion.LookRotation(dragDir, Vector3.up);
+                faceDir = dragDir;
+            }
             //myDollManager.OnUpdateHint(dragDir);
-            faceDir = dragDir;
         }
     }
 
@@ -538,6 +547,16 @@ public class PC_One : PlayerControllerBase
         //    myDollManager.transform.rotation = Quaternion.LookRotation(dragVec.normalized, Vector3.up);
         //}
         //myDollManager.OnFinishHint();
+        if (controlByMouseUp)
+        {
+            myDollManager.transform.position = pos;
+            if (dragVec.sqrMagnitude > 0.25f)
+            {
+                Vector3 dragDir = dragVec.normalized;
+                myDollManager.transform.rotation = Quaternion.LookRotation(dragDir, Vector3.up);
+                faceDir = dragDir;
+            }
+        }
     }
 
     public override void OnMoveToPosition(Vector3 target)
