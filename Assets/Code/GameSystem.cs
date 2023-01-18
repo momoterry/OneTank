@@ -261,46 +261,47 @@ public class GameSystem : MonoBehaviour
 
     public void SaveData()
     {
-        // 測試存檔
-        //print("GameSystem :: SaveData !!.......");
-        //測試存檔
-        //const string strSaveFile = "mySave.txt";
-        string filePath = Application.persistentDataPath + "/" + strSaveFile;
+        //// 測試存檔
+        ////print("GameSystem :: SaveData !!.......");
+        ////測試存檔
+        ////const string strSaveFile = "mySave.txt";
+        //string filePath = Application.persistentDataPath + "/" + strSaveFile;
 
 
-        SaveData theSaveData = thePlayerData.GetSaveData();
-        string saveDataStr = JsonUtility.ToJson(theSaveData);
-        //print(saveDataStr);
-        //print("====================");
+        //SaveData theSaveData = thePlayerData.GetSaveData();
+        //string saveDataStr = JsonUtility.ToJson(theSaveData);
+        ////print(saveDataStr);
+        ////print("====================");
 
 
-        //print("即將存檔到: " + filePath);
-        byte[] rawData = Encoding.UTF8.GetBytes(saveDataStr);
-        //File.WriteAllBytes(filePath, rawData);
-        File.WriteAllBytesAsync(filePath, rawData);
+        ////print("即將存檔到: " + filePath);
+        //byte[] rawData = Encoding.UTF8.GetBytes(saveDataStr);
+        ////File.WriteAllBytes(filePath, rawData);
+        //File.WriteAllBytesAsync(filePath, rawData);
     }
 
 
     public bool LoadData()
     {
-        string filePath = Application.persistentDataPath + "/" + strSaveFile;
-        print("GameSystem :: Try LoadData !! " + filePath);
+        //string filePath = Application.persistentDataPath + "/" + strSaveFile;
+        //print("GameSystem :: Try LoadData !! " + filePath);
 
-        if ( !File.Exists(filePath)) 
-        { 
-            return false;
-        }
+        //if ( !File.Exists(filePath)) 
+        //{ 
+        //    return false;
+        //}
 
-        //print("有找到存檔，開始讀取 .......");
-        byte[] rawData = File.ReadAllBytes(filePath);
-        string strSave = Encoding.UTF8.GetString(rawData);
+        ////print("有找到存檔，開始讀取 .......");
+        //byte[] rawData = File.ReadAllBytes(filePath);
+        //string strSave = Encoding.UTF8.GetString(rawData);
 
-        //print(strSave);
-        SaveData loadData = JsonUtility.FromJson<SaveData>(strSave);
+        ////print(strSave);
+        //SaveData loadData = JsonUtility.FromJson<SaveData>(strSave);
 
-        thePlayerData.LoadSavedData(loadData);
+        //thePlayerData.LoadSavedData(loadData);
 
-        return true;
+        //return true;
+        return false;
     }
 #endif
 }

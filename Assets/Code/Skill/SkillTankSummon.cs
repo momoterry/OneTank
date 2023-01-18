@@ -8,6 +8,8 @@ public class SkillTankSummon : SkillBase
     public GameObject summonFX;
     public float defaultSummonDistance = -2.0f;
 
+    public int CostMoney = 100;
+
     public override bool DoStart(ref SKILL_RESULT result)
     {
         if (!base.DoStart(ref result))
@@ -37,6 +39,12 @@ public class SkillTankSummon : SkillBase
             return false;
         }
 
+        if (GameSystem.GetPlayerData().GetMoney() < CostMoney)
+        {
+            thePC.SaySomthing("¸ê·½¤£¨¬.....");
+            return false;
+        }
+
 
         Vector3 pos = transform.position + thePC.GetFaceDir() * defaultSummonDistance;
 
@@ -56,21 +64,9 @@ public class SkillTankSummon : SkillBase
             print("Woooooooooops.......");
         }
 
-
-        //Vector3 td = (pos - transform.position).normalized;
-
-        //if (theAnimator)
-        //{
-        //    theAnimator.SetFloat("CastX", td.x);
-        //    theAnimator.SetFloat("CastY", td.z);
-
-        //    theAnimator.SetTrigger("Cast");
-        //}
-
-
-        //================================
         result = SKILL_RESULT.SUCCESS;
         base.OnSkillSucess();
+        GameSystem.GetPlayerData().AddMoney(-CostMoney);
         return true; ;
     }
 }
