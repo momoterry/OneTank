@@ -65420,6 +65420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b0b0a2c50f56849b979fd3c5107aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchHintRef: {fileID: 8840820115591688830, guid: 7ba8a3edf31adbe4da75e9eb73748c86, type: 3}
 --- !u!65 &8916800438358858816
 BoxCollider:
   m_ObjectHideFlags: 0
