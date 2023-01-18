@@ -520,6 +520,7 @@ public class PC_One : PlayerControllerBase
             if (!controlByMouseUp)
             {
                 myDollManager.transform.position = pos;
+                myDollManager.OnUpdateFormation();
             }
             //myDollManager.OnStartHint();
         }
@@ -556,6 +557,7 @@ public class PC_One : PlayerControllerBase
                 myDollManager.transform.rotation = Quaternion.LookRotation(dragDir, Vector3.up);
                 faceDir = dragDir;
             }
+            myDollManager.OnUpdateFormation();
         }
     }
 
@@ -564,20 +566,20 @@ public class PC_One : PlayerControllerBase
         if (inputActive && (currState == PC_STATE.NORMAL || currState == PC_STATE.ATTACK_AUTO))
         {
             myDollManager.transform.position = target;
-            myDollManager.OnStartHint();
+            //myDollManager.OnStartHint();
         }
     }
 
     public void OnSetupFace( Vector3 faceTo)
     {
         myDollManager.transform.rotation = Quaternion.LookRotation(faceTo, Vector3.up);
-        myDollManager.OnUpdateHint(faceTo);
+        //myDollManager.OnUpdateHint(faceTo);
         faceDir = faceTo;
     }
 
     public void OnMoveToPositionEnd()
     {
-        myDollManager.OnFinishHint();
+        //myDollManager.OnFinishHint();
     }
 
     //=================== 互動物件相關 ===================

@@ -36,9 +36,7 @@ public class DM_Tank : DollManager
         dolls = new Doll[slotNum];
     }
 
-
-    // Update is called once per frame
-    void Update()
+    public override void OnUpdateFormation()
     {
         if (needRebuild)
         {
@@ -47,26 +45,36 @@ public class DM_Tank : DollManager
         }
     }
 
-    public override void OnStartHint() 
-    { 
-        foreach (Doll d in frontList)
-        {
-            GameObject ho = d.GetSlot().gameObject;
-            ho.SetActive(true);
-            SPAnimator sa = ho.GetComponentInChildren<SPAnimator>();
-            sa.Restart();
-        }
-    }
-    public override void OnFinishHint()
+    // Update is called once per frame
+    void Update()
     {
-        foreach (Doll d in frontList)
-        {
-            GameObject ho = d.GetSlot().gameObject;
-            ho.SetActive(false);
-        }
+        //if (needRebuild)
+        //{
+        //    RebuildFormation();
+        //    needRebuild = false;
+        //}
     }
 
-    public override void OnUpdateHint(Vector3 faceDir) { }
+    //public override void OnStartHint() 
+    //{ 
+    //    foreach (Doll d in frontList)
+    //    {
+    //        GameObject ho = d.GetSlot().gameObject;
+    //        ho.SetActive(true);
+    //        SPAnimator sa = ho.GetComponentInChildren<SPAnimator>();
+    //        sa.Restart();
+    //    }
+    //}
+    //public override void OnFinishHint()
+    //{
+    //    foreach (Doll d in frontList)
+    //    {
+    //        GameObject ho = d.GetSlot().gameObject;
+    //        ho.SetActive(false);
+    //    }
+    //}
+
+    //public override void OnUpdateHint(Vector3 faceDir) { }
 
     public override Vector3 GetAllUnitCenter()
     {
@@ -196,7 +204,7 @@ public class DM_Tank : DollManager
             case DOLL_POSITION_TYPE.BACK:
                 frontList.Remove(doll);
                 doll.GetSlot().gameObject.SetActive(false);
-                RebuildFrontSlots();
+                //RebuildFrontSlots();
                 break;
             //case DOLL_POSITION_TYPE.MIDDLE:
             //    middleList.Remove(doll);

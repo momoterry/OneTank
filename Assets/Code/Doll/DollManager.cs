@@ -13,6 +13,7 @@ public class DollManager : MonoBehaviour
     protected int slotNum = 0;
     protected Doll[] dolls;
 
+    public virtual void OnUpdateFormation() { }
     public List<Doll> GetDolls()
     {
         List<Doll> theList = new List<Doll>();
@@ -26,9 +27,9 @@ public class DollManager : MonoBehaviour
         return theList;
     }
 
-    public virtual void OnStartHint() { }
-    public virtual void OnFinishHint() { }
-    public virtual void OnUpdateHint( Vector3 faceDir ) { }
+    //public virtual void OnStartHint() { }
+    //public virtual void OnFinishHint() { }
+    //public virtual void OnUpdateHint( Vector3 faceDir ) { }
 
     public virtual Vector3 GetAllUnitCenter()
     {
