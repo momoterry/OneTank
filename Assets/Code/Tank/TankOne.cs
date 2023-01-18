@@ -50,6 +50,7 @@ public class TankOne : DollAuto
     {
         //UpdateHullToFront();
         myTankController.SetHullToDir(myMaster.transform.forward);
+        myTankController.SetTurretToDir(myMaster.transform.forward);
 
         if (autoStateTime > 0.1f)
         {
@@ -96,6 +97,10 @@ public class TankOne : DollAuto
             toDir.y = 0;
             toDir.Normalize();
             myTankController.SetTurretToDir(toDir);
+        }
+        else
+        {
+            myTankController.SetTurretToDir(myMaster.transform.forward);
         }
 
         float dis = (mySlot.position - transform.position).magnitude;
