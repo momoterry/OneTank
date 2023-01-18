@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class TouchControl : MonoBehaviour
 {
+    protected bool isOriginalCenter = true;
     protected PC_One thePC = null;
 
     protected bool isTouching = false;
@@ -41,18 +42,21 @@ public class TouchControl : MonoBehaviour
         if (isTouching)
         {
             Vector3 mPos = Input.mousePosition;
-            Vector3 mWorldMousePos = Camera.main.ScreenToWorldPoint(mPos);
-            mWorldMousePos.y = 0.0f;
-
             float dragMinL = 1.0f;
-            /*
-            dragVec = mWorldMousePos - touchPos;
-            /*/
-            dragVec = mPos - touchMousePos;
-            dragVec = new Vector3(dragVec.x, 0, dragVec.y);
-            dragMinL *= (float)Camera.main.scaledPixelHeight / (Camera.main.orthographicSize * 2.0f);
-            //print("dragMinL: " + dragMinL);
-            //*/
+
+            if (isOriginalCenter)
+            {
+                dragVec = mPos - touchMousePos;
+                dragVec = new Vector3(dragVec.x, 0, dragVec.y);
+                dragMinL *= (float)Camera.main.scaledPixelHeight / (Camera.main.orthographicSize * 2.0f);
+            }
+            else
+            {
+                Vector3 mWorldMousePos = Camera.main.ScreenToWorldPoint(mPos);
+                mWorldMousePos.y = 0.0f;
+                dragVec = mWorldMousePos - touchPos;
+            }
+
             if (dragVec.magnitude > dragMinL)
             {
                 if (thePC)
