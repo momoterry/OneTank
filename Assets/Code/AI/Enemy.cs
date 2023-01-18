@@ -310,8 +310,11 @@ public class Enemy : MonoBehaviour
     {
         if ( !targetObj || !targetObj.activeInHierarchy)
         {
-            nextState = AI_STATE.IDLE;
-            return;
+            if (!SearchTarget())
+            {
+                nextState = AI_STATE.IDLE;
+                return;
+            }
         }
         PlayerControllerBase thePC = targetObj.GetComponent<PlayerControllerBase>();
         if (thePC && thePC.IsKilled())
