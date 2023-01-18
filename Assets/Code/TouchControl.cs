@@ -6,14 +6,26 @@ using UnityEngine.EventSystems;
 
 public class TouchControl : MonoBehaviour
 {
-
     protected PC_One thePC = null;
 
     protected bool isTouching = false;
     protected Vector3 touchPos;
     protected Vector3 touchMousePos;
-    protected Vector3 dragDir;
+    protected Vector3 dragVec;
 
+    [SerializeField]protected GameObject touchHintRef;
+    //protected GameObject theTouchHintObj;
+    protected TouchControlHint theHint;
+
+    private void Awake()
+    {
+        if (touchHintRef)
+        {
+            GameObject o = Instantiate(touchHintRef);
+            theHint = o.GetComponent<TouchControlHint>();
+            o.SetActive(false);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -31,15 +43,35 @@ public class TouchControl : MonoBehaviour
             Vector3 mPos = Input.mousePosition;
             Vector3 mWorldMousePos = Camera.main.ScreenToWorldPoint(mPos);
             mWorldMousePos.y = 0.0f;
-            if (thePC)
+
+            float dragMinL = 1.0f;
+            /*
+            dragVec = mWorldMousePos - touchPos;
+            /*/
+            dragVec = mPos - touchMousePos;
+            dragVec = new Vector3(dragVec.x, 0, dragVec.y);
+            dragMinL *= (float)Camera.main.scaledPixelHeight / (Camera.main.orthographicSize * 2.0f);
+            //print("dragMinL: " + dragMinL);
+            //*/
+            if (dragVec.magnitude > dragMinL)
             {
-                //dragDir = mWorldMousePos - touchPos;
-                dragDir = mPos - touchMousePos;
-                dragDir = new Vector3(dragDir.x, 0, dragDir.y);
-                if (dragDir.magnitude > 0.5f)
+                if (thePC)
                 {
                     //thePC.OnSetupFace(dir.normalized);
-                    thePC.OnTouchDrag(touchPos+ dragDir, dragDir);
+                    thePC.OnTouchDrag(touchPos + dragVec, dragVec);
+                }
+
+                if (theHint)
+                {
+                    theHint.SetFormationOnOff(true);
+                    theHint.SetFormationVec(dragVec.normalized);
+                }
+            }
+            else
+            {
+                if (theHint)
+                {
+                    theHint.SetFormationOnOff(false);
                 }
             }
         }
@@ -56,9 +88,15 @@ public class TouchControl : MonoBehaviour
             touchPos = point;
             touchMousePos = Input.mousePosition;
             touchPos.y = 0.0f;
-            dragDir = Vector3.zero;
+            dragVec = Vector3.zero;
             //thePC.OnMoveToPosition(touchPos);
             thePC.OnTouchDown(touchPos);
+            if (theHint)
+            {
+                theHint.gameObject.SetActive(true);
+                theHint.transform.position = touchPos;
+                theHint.SetFormationOnOff(false);
+            }
         }
     }
 
@@ -70,7 +108,11 @@ public class TouchControl : MonoBehaviour
             if (thePC)
             {
                 //thePC.OnMoveToPositionEnd();
-                thePC.OnTouchFinish(touchPos + dragDir, dragDir);
+                thePC.OnTouchFinish(touchPos + dragVec, dragVec);
+            }
+            if (theHint)
+            {
+                theHint.gameObject.SetActive(false);
             }
         }
 

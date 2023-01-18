@@ -515,7 +515,7 @@ public class PC_One : PlayerControllerBase
         if (inputActive && (currState == PC_STATE.NORMAL || currState == PC_STATE.ATTACK_AUTO))
         {
             myDollManager.transform.position = pos;
-            myDollManager.OnStartHint();
+            //myDollManager.OnStartHint();
         }
     }
 
@@ -525,7 +525,7 @@ public class PC_One : PlayerControllerBase
         {
             Vector3 dragDir = dragVec.normalized;
             myDollManager.transform.rotation = Quaternion.LookRotation(dragDir, Vector3.up);
-            myDollManager.OnUpdateHint(dragDir);
+            //myDollManager.OnUpdateHint(dragDir);
             faceDir = dragDir;
         }
     }
@@ -537,7 +537,7 @@ public class PC_One : PlayerControllerBase
         //{
         //    myDollManager.transform.rotation = Quaternion.LookRotation(dragVec.normalized, Vector3.up);
         //}
-        myDollManager.OnFinishHint();
+        //myDollManager.OnFinishHint();
     }
 
     public override void OnMoveToPosition(Vector3 target)

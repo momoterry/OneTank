@@ -65275,7 +65275,7 @@ GameObject:
   - component: {fileID: 7230547168017103513}
   - component: {fileID: 8916800438358858816}
   m_Layer: 14
-  m_Name: TouchPlane
+  m_Name: TouchControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
