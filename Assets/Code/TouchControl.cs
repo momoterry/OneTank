@@ -99,7 +99,8 @@ public class TouchControl : MonoBehaviour
             thePC.OnTouchDown(touchPos);
             if (theHint)
             {
-                theHint.gameObject.SetActive(true);
+                //theHint.gameObject.SetActive(true);
+                theHint.SetOnOff(true);
                 theHint.transform.position = touchPos;
                 theHint.SetFormationOnOff(false);
             }
@@ -118,7 +119,8 @@ public class TouchControl : MonoBehaviour
             }
             if (theHint)
             {
-                theHint.gameObject.SetActive(false);
+                //theHint.gameObject.SetActive(false);
+                theHint.SetOnOff(false);
             }
         }
 
