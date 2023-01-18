@@ -95,7 +95,7 @@ public class DM_Tank : DollManager
 
         float fPos = ((float)(nLine - 1) * 0.5f) + allShift;  //前方起始
         //float slotDepth = 2.0f;
-        fPos += slotDepth * (float)(nLine - 1);
+        //fPos += slotDepth * (float)(nLine - 1);
 
         for (int l = 0; l < nLine; l++)
         {

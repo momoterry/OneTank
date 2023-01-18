@@ -65407,7 +65407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageNumberRef: {fileID: 4394807406156685048, guid: 3466a5fa838126242b7e5767b9e294bc, type: 3}
-  PoolNum: 20
+  PoolNum: 40
 --- !u!114 &7230547168017103513
 MonoBehaviour:
   m_ObjectHideFlags: 0

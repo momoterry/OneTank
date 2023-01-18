@@ -194,7 +194,7 @@ MonoBehaviour:
   mySPAnimator: {fileID: 0}
   autoSkillRef: {fileID: 0}
   activeSkillRefs:
-  - {fileID: -6384202603382535029, guid: 198d358745d2e9a42b1e27bc9df61bb0, type: 3}
+  - {fileID: -4355110580141893186, guid: 198d358745d2e9a42b1e27bc9df61bb0, type: 3}
   autoAttackWait: 0.2
   WalkSpeed: 6
   HP_MaxInit: 200
