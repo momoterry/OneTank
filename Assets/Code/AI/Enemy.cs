@@ -225,7 +225,15 @@ public class Enemy : MonoBehaviour
             stateTime = 0.1f;
             if (SearchTarget())
             {
-                nextState = AI_STATE.CHASE;
+                float dis = (targetPos - transform.position).magnitude;
+                if (dis < AttackRangeIn)
+                {
+                    nextState = AI_STATE.ATTACK;
+                }
+                else
+                {
+                    nextState = AI_STATE.CHASE;
+                }
             }
         }
     }
