@@ -1,0 +1,142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DesertAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: -1690799454, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -1411895888, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -1704974401, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -19249140, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: 640965342, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: 613629820, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: 1797965238, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -1474201773, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -1670888744, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -894007497, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: 1763565080, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: 1031307461, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: 810188443, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -1943778501, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -483559288, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -394471532, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -1323162722, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -1314939145, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: 1084834545, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: 637384028, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: 1035014040, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -306702358, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -2057150492, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -1949780061, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: 702971695, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: -1488956473, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: 1590280606, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: 1576090637, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    - {fileID: 1534128683, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -306702358, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: 1035014040, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -1949780061, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -2057150492, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -1488956473, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: 702971695, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: 1576090637, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: 1590280606, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: 1534128683, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -894007497, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -1670888744, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -1411895888, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -1690799454, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -19249140, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -1704974401, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: 613629820, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: 640965342, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -1474201773, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: 1797965238, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: 1084834545, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: 637384028, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: 1763565080, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: 1031307461, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: 810188443, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -1943778501, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -483559288, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -394471532, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -1323162722, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  - {fileID: -1314939145, guid: 0bc5f8cab21c409498038d428e9ebe74, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Desert_21
+  - Desert_20
+  - Desert_23
+  - Desert_22
+  - Desert_25
+  - Desert_24
+  - Desert_27
+  - Desert_26
+  - Desert_28
+  - Desert_9
+  - Desert_8
+  - Desert_1
+  - Desert_0
+  - Desert_3
+  - Desert_2
+  - Desert_5
+  - Desert_4
+  - Desert_7
+  - Desert_6
+  - Desert_18
+  - Desert_19
+  - Desert_10
+  - Desert_11
+  - Desert_12
+  - Desert_13
+  - Desert_14
+  - Desert_15
+  - Desert_16
+  - Desert_17
+  m_RenderDataMap: {}
+  m_Tag: DesertAtlas
+  m_IsVariant: 0
