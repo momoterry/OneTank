@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27fa0659fccc6340a5fb864d1d11be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  ID: 1020
   MaxHP: 800
   spawnFX: {fileID: 0}
   deadFX: {fileID: 8091667162185462, guid: bdfc698cb8b0b5b4dbe807724abf6fa9, type: 3}
