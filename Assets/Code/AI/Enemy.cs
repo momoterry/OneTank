@@ -55,7 +55,19 @@ public class Enemy : MonoBehaviour
     protected AI_STATE currState = AI_STATE.NONE;
     protected AI_STATE nextState = AI_STATE.NONE;
 
+    protected AITeam myTeam;
 
+    public void SetAITeam( AITeam theTeam) { myTeam = theTeam; }
+
+    public void OnAlert( GameObject alertTarget)
+    {
+        if (currState == AI_STATE.IDLE)
+        {
+            SetTarget(alertTarget);
+            nextState = AI_STATE.CHASE;
+            //print("收到警報!!");
+        }
+    }
     // Public
     public int GetID() { return ID; }
 
@@ -234,6 +246,10 @@ public class Enemy : MonoBehaviour
                 {
                     nextState = AI_STATE.CHASE;
                 }
+                if (myTeam)
+                {
+                    myTeam.OnTeamAlert(this, targetObj);
+                }
             }
         }
     }
@@ -389,6 +405,10 @@ public class Enemy : MonoBehaviour
             GameObject po = BattleSystem.GetInstance().GetPlayer();
             SetTarget(po);
             nextState = AI_STATE.CHASE;
+            if (myTeam != null)
+            {
+                myTeam.OnTeamAlert(this, targetObj);
+            }
         }
 
 

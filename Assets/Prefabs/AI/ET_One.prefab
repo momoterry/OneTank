@@ -173,10 +173,10 @@ MonoBehaviour:
   deadFX: {fileID: 8091667162185462, guid: bdfc698cb8b0b5b4dbe807724abf6fa9, type: 3}
   debris: {fileID: 4005502135651534345, guid: c1320f4954c56724691dba426f8da141, type: 3}
   SpawnWaitTime: 0.1
-  ChaseRangeIn: 7
+  ChaseRangeIn: 10
   ChaseRangeOut: 15
   AttackRangeIn: 5
-  AttackRangeOut: 7
+  AttackRangeOut: 10
   AttackWait: 0.2
   AttackCD: 2
   Attack: 20

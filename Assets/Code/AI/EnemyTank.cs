@@ -112,6 +112,10 @@ public class EnemyTank : Enemy
             GameObject po = BattleSystem.GetInstance().GetPlayer();
             SetTarget(po);
             nextState = AI_STATE.CHASE;
+            if (myTeam != null)
+            {
+                myTeam.OnTeamAlert(this, targetObj);
+            }
         }
 
 
