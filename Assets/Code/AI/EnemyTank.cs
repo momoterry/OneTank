@@ -106,13 +106,13 @@ public class EnemyTank : Enemy
         }
 
         //從 Idle 中醒來
-        //if (currState == AI_STATE.IDLE)
-        //{
-        //    //TODO: 應該透過子彈來回追發射者
-        //    GameObject po = BattleSystem.GetInstance().GetPlayer();
-        //    SetTarget(po);
-        //    nextState = AI_STATE.CHASE;
-        //}
+        if (currState == AI_STATE.IDLE)
+        {
+            //TODO: 應該透過子彈來回追發射者
+            GameObject po = BattleSystem.GetInstance().GetPlayer();
+            SetTarget(po);
+            nextState = AI_STATE.CHASE;
+        }
 
 
         //Damage Number
@@ -123,7 +123,8 @@ public class EnemyTank : Enemy
     //{
     //    Vector2 thePoint = Camera.main.WorldToScreenPoint(transform.position + Vector3.forward);
     //    thePoint.y = Camera.main.pixelHeight - thePoint.y;
-    //    GUI.TextArea(new Rect(thePoint, new Vector2(100.0f, 40.0f)), currState.ToString());
-
+    //    //GUI.TextArea(new Rect(thePoint, new Vector2(100.0f, 40.0f)), currState.ToString());
+    //    if (targetObj)
+    //        GUI.TextArea(new Rect(thePoint, new Vector2(100.0f, 40.0f)), targetObj.name);
     //}
 }

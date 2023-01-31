@@ -105,4 +105,4 @@ MonoBehaviour:
     sprites:
     - {fileID: 865810332, guid: 7b04cb55f90ceb3449f944f4242c8184, type: 3}
     - {fileID: 225364498, guid: 7b04cb55f90ceb3449f944f4242c8184, type: 3}
-    FPS: 2
+    FPS: 4

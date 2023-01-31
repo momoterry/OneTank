@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   formationRoot: {fileID: 3054885239946519690}
+  TimeHintStay: 1
 --- !u!1001 &3036065745911749480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -304,6 +305,10 @@ PrefabInstance:
     - target: {fileID: 4734021161119429966, guid: 5a542a50b9aa37144a1435ecf4af82d0, type: 3}
       propertyPath: m_Name
       value: Hint (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734021161119429966, guid: 5a542a50b9aa37144a1435ecf4af82d0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a542a50b9aa37144a1435ecf4af82d0, type: 3}
