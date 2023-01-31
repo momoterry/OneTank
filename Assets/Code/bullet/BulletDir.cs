@@ -16,6 +16,6 @@ public class BulletDir : bullet
             dirTarget = gameObject;
         }
 
-        dirTarget.transform.rotation = Quaternion.Euler(90.0f, Vector3.SignedAngle(Vector3.forward, targetVec, Vector3.up), DefaultAngle);
+        dirTarget.transform.rotation = Quaternion.Euler(90.0f, Vector3.SignedAngle(Vector3.forward, targetVec, Vector3.up) + DefaultAngle, 0);
     }
 }

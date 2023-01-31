@@ -6,6 +6,7 @@ public class TankOne : DollAuto
 {
     public GameObject hull;
     public GameObject turret;
+    public GameObject gunFireFX;
     protected float AttackRandomRatio = 0.2f;
 
     protected TankController myTankController;
@@ -115,13 +116,20 @@ public class TankOne : DollAuto
     {
         Vector3 td = myTankController.GetTurretDirt();
 
-        GameObject bulletObj = BattleSystem.SpawnGameObj(bulletRef, myTankController.GetMuzzlePos());
+        Vector3 pos = myTankController.GetMuzzlePos();
+        GameObject bulletObj = BattleSystem.SpawnGameObj(bulletRef, pos);
 
         bullet_base b = bulletObj.GetComponent<bullet_base>();
         if (b)
         {
             float damage = AttackInit * Random.Range(1.0f - AttackRandomRatio, 1.0f + AttackRandomRatio);
             b.InitValue(DAMAGE_GROUP.PLAYER, damage, td, myTarget);
+        }
+
+        if (gunFireFX)  //¯¥¤õ¯S®Ä
+        {
+            Quaternion qm = Quaternion.Euler(90.0f, Vector3.SignedAngle(Vector3.forward, td, Vector3.up), 0);
+            GameObject gunFx = Instantiate(gunFireFX, pos, qm);
         }
     }
 
