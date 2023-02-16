@@ -61,7 +61,7 @@ public class bullet : bullet_base
     }
 
     // Update is called once per frame
-    void Update()
+    virtual protected void Update()
     {
         transform.position += targetDir * speed * Time.deltaTime;
 

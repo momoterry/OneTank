@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8823264088977311082}
   - component: {fileID: 172181719495572011}
   m_Layer: 0
-  m_Name: APImage
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -1282408150, guid: ccb6ff600f0a38a409fdc958c9375bc3, type: 3}
+  m_Sprite: {fileID: 1079792170, guid: a09c3f2ff81dd3d4ebba9c77ec758dcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,8 +103,8 @@ MonoBehaviour:
     FPS: 12
   Idle:
     sprites:
-    - {fileID: -1282408150, guid: ccb6ff600f0a38a409fdc958c9375bc3, type: 3}
-    - {fileID: 1585390699, guid: ccb6ff600f0a38a409fdc958c9375bc3, type: 3}
+    - {fileID: 1079792170, guid: a09c3f2ff81dd3d4ebba9c77ec758dcb, type: 3}
+    - {fileID: 438914254, guid: a09c3f2ff81dd3d4ebba9c77ec758dcb, type: 3}
     FPS: 12
 --- !u!1 &8101537965375270392
 GameObject:
@@ -115,12 +115,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4153948164278550785}
-  - component: {fileID: 5842656074379282330}
+  - component: {fileID: 5324099175459844955}
   - component: {fileID: 6524222714118560010}
   - component: {fileID: 8208296565319111560}
   - component: {fileID: 4077185146552938925}
   m_Layer: 0
-  m_Name: AP_Enemy
+  m_Name: MissileOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &5842656074379282330
+--- !u!114 &5324099175459844955
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,14 +151,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8101537965375270392}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d804631ca839844d8299e4eb187d470, type: 3}
+  m_Script: {fileID: 11500000, guid: 98d4dad7ee5d36c4abcf6cf28663a816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 18
-  lifeTime: 0.5
-  hitFX: {fileID: 5887683565233948115, guid: f952f3c1c10889c4e99f2755d00fdbc0, type: 3}
+  speed: 2
+  lifeTime: 1
+  hitFX: {fileID: 4216302426155839046, guid: 492a5acd227e36440977f27098111c41, type: 3}
   dirTarget: {fileID: 8101537965375270392}
   DefaultAngle: 0
+  Acc: 100
 --- !u!114 &6524222714118560010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd089724eb83985408e2ccc3601896e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bias: -1
+  bias: 0.5
   onlyAdjustOnStart: 0
 --- !u!54 &8208296565319111560
 Rigidbody:
@@ -200,5 +201,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 1, z: 1}
+  m_Size: {x: 0.25, y: 1.5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

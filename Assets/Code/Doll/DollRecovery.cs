@@ -112,8 +112,8 @@ public class DollRecovery : MonoBehaviour
         {
             GameSystem.GetPlayerData().AddUsingDoll("TankAlpha");
             GameSystem.GetPlayerData().AddUsingDoll("TankAlpha");
-            //GameSystem.GetPlayerData().AddUsingDoll("TankAlpha");
-            //GameSystem.GetPlayerData().AddUsingDoll("TankAlpha");
+            GameSystem.GetPlayerData().AddUsingDoll("TankMissile");
+            GameSystem.GetPlayerData().AddUsingDoll("TankMissile");
         }
         //*/
 

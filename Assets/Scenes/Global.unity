@@ -199,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DollRefs:
   - {fileID: 4032685806379418579, guid: f019bfee609196b4594b04e145617253, type: 3}
+  - {fileID: 4032685806379418579, guid: c28af5226e2a90249a11a0898af458e0, type: 3}
 --- !u!114 &327809250
 MonoBehaviour:
   m_ObjectHideFlags: 0
