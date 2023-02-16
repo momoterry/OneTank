@@ -99,7 +99,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 8823264088977311082}
   InitAnim:
-    sprites: []
+    sprites:
+    - {fileID: 1520561743, guid: a09c3f2ff81dd3d4ebba9c77ec758dcb, type: 3}
+    - {fileID: 1692825658, guid: a09c3f2ff81dd3d4ebba9c77ec758dcb, type: 3}
+    - {fileID: -1550143462, guid: a09c3f2ff81dd3d4ebba9c77ec758dcb, type: 3}
+    - {fileID: 1151234246, guid: a09c3f2ff81dd3d4ebba9c77ec758dcb, type: 3}
     FPS: 12
   Idle:
     sprites:
@@ -174,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd089724eb83985408e2ccc3601896e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bias: 0.5
+  bias: 1
   onlyAdjustOnStart: 0
 --- !u!54 &8208296565319111560
 Rigidbody:
