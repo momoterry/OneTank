@@ -154,12 +154,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98d4dad7ee5d36c4abcf6cf28663a816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
   lifeTime: 1
   hitFX: {fileID: 4216302426155839046, guid: 492a5acd227e36440977f27098111c41, type: 3}
   dirTarget: {fileID: 8101537965375270392}
   DefaultAngle: 0
   Acc: 100
+  speedMax: 30
+  AccDelay: 0.25
 --- !u!114 &6524222714118560010
 MonoBehaviour:
   m_ObjectHideFlags: 0
