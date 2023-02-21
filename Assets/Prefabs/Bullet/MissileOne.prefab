@@ -165,7 +165,7 @@ MonoBehaviour:
   DefaultAngle: 0
   Acc: 100
   speedMax: 30
-  AccDelay: 0.25
+  AccDelay: 0.1
 --- !u!114 &6524222714118560010
 MonoBehaviour:
   m_ObjectHideFlags: 0

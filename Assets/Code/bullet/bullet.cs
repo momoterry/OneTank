@@ -54,7 +54,7 @@ public class bullet : bullet_base
     //}
 
     // Start is called before the first frame update
-    void Start()
+    virtual protected void Start()
     {
         myTime = lifeTime;
         myDamage.damage = baseDamage;
